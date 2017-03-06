@@ -1,8 +1,11 @@
-"use strict";
+'use strict';
 
 var locationMarker = undefined;
+var goal = L.latLng(51.55857,5.12213);
 
 function onLocationError(e) {
+
+    alert(e.message);
     console.log(e.message);
     // stopLocate();
 }
@@ -15,6 +18,9 @@ function updatelocation(map,e) {
   // map.addLayer(locationMarker);
   map.setZoom(20);
   map.panTo(e.latlng)
+  if (e.latlng.distanceTo(goal) < 5) {
+    window.open("https://www.w3schools.com");
+  }
 }
 
 function initMap() {
@@ -41,7 +47,7 @@ function initMap() {
         imperial:false,
         updateWhenIdle:false
       }).addTo(map);
-    L.marker([51.55857,5.12213]).addTo(map);
+    L.marker(goal).addTo(map);
 
     L.edgeMarker({
       icon: L.icon({ // style markers
