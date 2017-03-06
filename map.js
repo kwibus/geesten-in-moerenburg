@@ -1,7 +1,7 @@
 'use strict';
 
 var goal = L.latLng(51.55857,5.12213);
-var locationMarker = L.circleMarker(goal);
+var locationMarker = L.marker(goal);
 
 function onLocationError(e) {
 
@@ -11,12 +11,11 @@ function onLocationError(e) {
 }
 
 function updatelocation(map,e) {
-  var radius = e.accuracy / 2;
-  // map.removeLayer(locationMarker);
+
+
   locationMarker.setLatLng(e.latlng);
-  // map.addLayer(locationMarker);
-  // map.setZoom(20);
-  map.panTo(e.latlng)
+  map.panTo(e.latlng);
+
   if (e.latlng.distanceTo(goal) < 5) {
     window.open("https://www.w3schools.com");
   }
@@ -32,11 +31,14 @@ function initMap() {
     map.setView([0,0],20) ;
 
     L.marker(goal).addTo(map);
+    locationMarker.addTo(map);
+
     let setMarker = function (e) {
 
 
       let radius = e.accuracy / 2
-      locationMarker = L.circleMarker(e.latlng,radius).bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
+      locationMarker.bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
+
       locationMarker.addTo(map);
       // map.setZoom(20);
       updatelocation(map,e);
@@ -55,6 +57,7 @@ function initMap() {
     let edgeLayer = L.edgeMarker({
           icon: L.icon({
               iconUrl: 'images/edge-arrow-marker.png',
+              clickable: false,
               iconSize: [48, 48]})
           })
     edgeLayer.addTo(map);
@@ -62,9 +65,7 @@ function initMap() {
 }
 
 function follow (map){
-    map.on('locationfound', function (e) {
-      updatelocation (map,e);
-      });
+    map.on('locationfound', function (e) { updatelocation (map,e); });
     map.locate({setView: false, watch :true,timeout:5000});
 
 }
