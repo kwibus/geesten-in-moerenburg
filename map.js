@@ -41,7 +41,7 @@ function initMap() {
         imperial:false,
         updateWhenIdle:false
       }).addTo(map);
-    L.marker([51.33514,5.0]).addTo(map);
+    L.marker([51.55857,5.12213]).addTo(map);
 
     L.edgeMarker({
       icon: L.icon({ // style markers
