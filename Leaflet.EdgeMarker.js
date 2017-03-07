@@ -41,7 +41,7 @@
 
       this._addEdgeMarkers();
 
-      map.addLayer(this);
+      // map.addLayer(this);  // this was in orginal but this only works without
 
       return this;
     },
