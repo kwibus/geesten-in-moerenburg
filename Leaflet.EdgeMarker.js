@@ -68,6 +68,7 @@
       }
 
       var mapPixelBounds = this._map.getSize();
+      var minxBound = 40;
 
       var markerWidth = this.options.icon.options.iconSize[0];
       var markerHeight = this.options.icon.options.iconSize[1];
@@ -80,7 +81,7 @@
         if (currentMarkerPosition.y < 0 ||
             currentMarkerPosition.y > mapPixelBounds.y ||
             currentMarkerPosition.x > mapPixelBounds.x ||
-            currentMarkerPosition.x < 0) {
+            currentMarkerPosition.x <minxBound) {
 
           // get pos of marker
           var x = currentMarkerPosition.x;
@@ -102,11 +103,10 @@
             x = mapPixelBounds.x - markerWidth / 2;
             markerDistance = currentMarkerPosition.x - mapPixelBounds.x;
           // left out
-          } else if (currentMarkerPosition.x < 0) {
-            x = 0 + markerWidth / 2;
+          } else if (currentMarkerPosition.x < minxBound) {
+            x = minxBound + markerWidth / 2;
             markerDistance = -currentMarkerPosition.x;
           }
-
           // change opacity on distance
           var newOptions = this.options;
           if (this.options.distanceOpacity) {
