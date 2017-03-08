@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
     <link rel="stylesheet" href="css/leaflet-sidebar.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -27,18 +29,18 @@
         <div class="sidebar-tabs">
             <ul role="tablist">
                 <li><a href="#Introductie" role="tab"><i class="fa fa-bars"></i></a></li>
-                <li><a href="#opdracht-1" role="tab"><b>1.</b></a></li>
-                  <li><a href="#opdracht-2" role="tab"><b>2.</b></a></li>
-                  <li><a href="#opdracht-3" role="tab"><b>3.</b></a></li>
-                  <li><a href="#opdracht-4" role="tab"><b>4.</b></a></li>
-                  <li><a href="#opdracht-5" role="tab"><b>5.</b></a></li>
-                  <li><a href="#opdracht-6" role="tab"><b>6.</b></a></li>
-                  <li><a href="#opdracht-7" role="tab"><b>7.</b></a></li>
-                  <li><a href="#opdracht-8" role="tab"><b>8.</b></a></li>
-                  <li><a href="#opdracht-9" role="tab"><b>9.</b></a></li>
-                  <li><a href="#opdracht-10" role="tab"><b>10.</b></a></li>
-                  <li><a href="#opdracht-11" role="tab"><b>11.</b></a></li>
-                  <li><a href="#opdracht-12" role="tab"><b>12.</b></a></li>
+                <li><a href="#opdracht-1"  role="tab"><b>1.</b></a></li>
+                <li><a href="#opdracht-2"  style="display:none"role="tab"><b>2.</b></a></li>
+                <li><a href="#opdracht-3"  style="display:none"role="tab"><b>3.</b></a></li>
+                <li><a href="#opdracht-4"  style="display:none"role="tab"><b>4.</b></a></li>
+                <li><a href="#opdracht-5"  style="display:none"role="tab"><b>5.</b></a></li>
+                <li><a href="#opdracht-6"  style="display:none"role="tab"><b>6.</b></a></li>
+                <li><a href="#opdracht-7"  style="display:none"role="tab"><b>7.</b></a></li>
+                <li><a href="#opdracht-8"  style="display:none"role="tab"><b>8.</b></a></li>
+                <li><a href="#opdracht-9"  style="display:none"role="tab"><b>9.</b></a></li>
+                <li><a href="#opdracht-10" style="display:none"role="tab"><b>10.</b></a></li>
+                <li><a href="#opdracht-11" style="display:none"role="tab"><b>11.</b></a></li>
+                <li><a href="#opdracht-12" style="display:none"role="tab"><b>12.</b></a></li>
             </ul>
 
             <ul role="tablist">
@@ -101,13 +103,41 @@
             lijk sirenenlied gelokt.
             </q></p>
 
+                  <ol type="A" id="buttons" style="display:table;vertical-align: top;">
+                    <li style="vertical-align: top" >
+                      <button class=question>
+                            Een jonge snoek kan zelf nog opgevreten worden en verstopt zich achter waterplanten.
+                      </button>
+                    </li>
+                    <li >
+
+                      <button class=question>
+                          Een jonge Snoek jaagt op zicht, een oudere op reuk.
+                      </button>
+                    </li>
+
+                    <li>
+
+                      <button class=question>
+                          Een oude Snoek heeft weerstad tegen vervuild water opgebouwd.
+                      </button>
+                    </li>
+                    <li>
+
+                      <button class=question>
+                         Een oude snoek is traag en voelt zich veilig in donker, vervuild water.
+                      </button>
+                    </li>
+                  </ol>
+
             </div>
         </div>
     </div>
 
     <script src="leaflet-sidebar.js"></script>
-    <div id="map" style="position:relative width:90vw; height:100vh"></div>
+    <div id="map" style="width:100vw; height:100vh"></div>
 
     <script src="map.js"> </script>
+    <!-- <progress value="90" max="100" style="width: 100vw; height:1vh margin:0px bottom:0px,background&#45;color=transparent"> </progress> -->
     </body>
 </html>
