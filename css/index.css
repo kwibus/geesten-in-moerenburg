@@ -1,10 +1,23 @@
 .question{
- text-align: left;
- border:none;
- outline: none;
- background-color:#0074d9;
- color:#eee;
- margin-bottom:1px;
- padding:10px;
- width:100%;
+    text-align: left;
+    border:none;
+    outline: none;
+    background-color:#0074d9;
+    color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+    /* border-radius: 15px; */
+    width:100%;
+    /* box-shadow: 0 4px #999; */
 }
+
+.question:enabled:hover {
+    background-color: #3e8e41
+}
+.question:enabled:active {
+    transform: translateY(4px);
+}
+
+.question:disabled{
+    background-color:#0054b9;
+{
