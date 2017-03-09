@@ -60,7 +60,10 @@ function initMap() {
               })
           })
     // edgeLayer.
+
     edgeLayer.addTo(map);
+    map.zoomControl.setPosition('topright');
+
     sidebar.addTo(map);
     sidebar.open("Introductie")
     return map
