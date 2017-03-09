@@ -1,6 +1,8 @@
 'use strict';
-
+var zomberlust=L.latLng(51.55938707072835,5.11301726102829)
+var sidebar=L.control.sidebar('sidebar');
 var goal = L.latLng(51.55857,5.12213);
+var curentlocation = zomberlust;
 var locationMarker = L.marker(goal);
 
 function onLocationError(e) {
@@ -12,9 +14,9 @@ function onLocationError(e) {
 
 function updatelocation(map,e) {
 
-
   locationMarker.setLatLng(e.latlng);
   map.panTo(e.latlng);
+  // map.setZoom(20);
 
 }
 
@@ -25,7 +27,7 @@ function initMap() {
     attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    map.setView([0,0],20) ;
+    map.setView(curentlocation,20) ;
 
     L.marker(goal).addTo(map);
     locationMarker.addTo(map);
@@ -35,6 +37,7 @@ function initMap() {
 
       let radius = e.accuracy / 2
       locationMarker.bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
+      locationMarker.bindTooltip("my tooltip text").openTooltip(); 
       updatelocation(map,e);
     }
 
@@ -52,13 +55,14 @@ function initMap() {
     let edgeLayer = L.edgeMarker({
           icon: L.icon({
               iconUrl: 'images/edge-arrow-marker.png',
-              // clickable: false,
+              clickable: false,
               iconSize: [48, 48]
               })
           })
+    // edgeLayer.
     edgeLayer.addTo(map);
-
-    var sidebar = L.control.sidebar('sidebar').addTo(map);
+    sidebar.addTo(map);
+    sidebar.open("Introductie")
     return map
 }
 
@@ -71,7 +75,6 @@ function follow (map){
     map.on('locationfound',succes); // does not work now
 
     map.locate({setView: false, watch :true, timeout:5000});
-
 }
 function succes(e){
 
