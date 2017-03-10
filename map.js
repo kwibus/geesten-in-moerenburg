@@ -1,14 +1,25 @@
 'use strict';
 var zomberlust=L.latLng(51.55938707072835,5.11301726102829)
 var sidebar=L.control.sidebar('sidebar');
+
 var goalN = 0;
-var goal =L.latLng(51.55857,5.12213);
+var goals =[[51.55857,5.12213],
+            [51.55655,5.124533 ]
+           ];
+var goal=goals[goalN];
+var goalMarker = L.marker(goal);
+
 var curentlocation = zomberlust;
 var locationMarker = L.marker(goal);
 var line =undefined;
 
 
-
+function nextgoal(){
+    goalN++;
+    goal=goals[goalN];
+    line.getLatLngs().splice(1,1,goal);
+    goalMarker.setLatLng(goal);
+}
 
 function onLocationError(e) {
 
@@ -33,7 +44,7 @@ function initMap() {
 
     map.setView(curentlocation,20) ;
 
-    L.marker(goal).addTo(map);
+    goalMarker.addTo(map);
     locationMarker.addTo(map);
 
     let setMarker = function (e) {
@@ -82,7 +93,8 @@ function follow (map){
 function succes(e){
 
   if (e.latlng.distanceTo(goal) < 5) {
-    window.open("https://www.w3schools.com");
+        nextgoal();
+        sidebar.open('tab'+goalN);
   }
 }
 var map = initMap();
