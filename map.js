@@ -32,7 +32,9 @@ function updatelocation(map,e) {
 
   locationMarker.setLatLng(e.latlng);
   map.panTo(e.latlng);
-  line.setLatLngs([e.latlng,goal]);
+  if (typeof(goal) !== 'undefined') {
+      line.setLatLngs([e.latlng,goal]);
+  }
 }
 
 function initMap() {
@@ -91,12 +93,14 @@ function follow (map){
 }
 function succes(e){
 
-  if (e.latlng.distanceTo(goal) < 5) {
-  goal=undefined;
-    if (navigator.vibrate) {
-         navigator.vibrate(1000);
-    }
-        nextTab();
+  if (typeof(goal) !== 'undefined') {
+      if (e.latlng.distanceTo(goal) < 5) {
+      goal=undefined;
+        if (navigator.vibrate) {
+             navigator.vibrate(1000);
+        }
+            nextTab();
+      }
   }
 }
 var map = initMap();
