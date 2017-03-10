@@ -50,7 +50,6 @@ function initMap() {
     let setMarker = function (e) {
         let radius = e.accuracy / 2
         locationMarker.bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
-        locationMarker.bindTooltip("my tooltip text").openTooltip();
         updatelocation(map,e);
     }
 
