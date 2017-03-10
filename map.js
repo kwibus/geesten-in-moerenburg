@@ -17,7 +17,7 @@ var line =undefined;
 function nextgoal(){
     goalN++;
     goal=goals[goalN];
-    line.getLatLngs().splice(1,1,goal);
+    line.getLatLngs()[2] = goal;
     goalMarker.setLatLng(goal);
 }
 
