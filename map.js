@@ -1,9 +1,14 @@
 'use strict';
 var zomberlust=L.latLng(51.55938707072835,5.11301726102829)
 var sidebar=L.control.sidebar('sidebar');
-var goal = L.latLng(51.55857,5.12213);
+var goalN = 0;
+var goal =L.latLng(51.55857,5.12213);
 var curentlocation = zomberlust;
 var locationMarker = L.marker(goal);
+var line =undefined;
+
+
+
 
 function onLocationError(e) {
 
@@ -16,8 +21,7 @@ function updatelocation(map,e) {
 
   locationMarker.setLatLng(e.latlng);
   map.panTo(e.latlng);
-  // map.setZoom(20);
-
+  line.setLatLngs([e.latlng,goal]);
 }
 
 function initMap() {
@@ -33,12 +37,10 @@ function initMap() {
     locationMarker.addTo(map);
 
     let setMarker = function (e) {
-
-
-      let radius = e.accuracy / 2
-      locationMarker.bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
-      locationMarker.bindTooltip("my tooltip text").openTooltip(); 
-      updatelocation(map,e);
+        let radius = e.accuracy / 2
+        locationMarker.bindPopup("You are within " + Math.round (radius) + " meters from this point").openPopup();
+        locationMarker.bindTooltip("my tooltip text").openTooltip();
+        updatelocation(map,e);
     }
 
     map.once('locationfound', setMarker);
@@ -52,26 +54,24 @@ function initMap() {
 
     map.locate({setView: true, watch :false});
 
-    let edgeLayer = L.edgeMarker({
-          icon: L.icon({
-              iconUrl: 'images/edge-arrow-marker.png',
-              clickable: false,
-              iconSize: [48, 48]
-              })
-          })
-    // edgeLayer.
-
+    let edgeLayer = L.edgeMarker(goal);//.bindTooltip("goal").openTooltip();
     edgeLayer.addTo(map);
     map.zoomControl.setPosition('topright');
 
     sidebar.addTo(map);
     sidebar.open("Introductie")
+
+    // create a red polyline from an array of LatLng points
+    var latlngs = [ curentlocation ,goal];
+    line = L.polyline(latlngs, {color: 'green'}).addTo(map);
+    // zoom the map to the polyline
+    // map.fitBounds(polyline.getBounds());
+
     return map
 }
 
 // TODO refactor rename reorder
 function follow (map){
-
     map.on('locationfound', function (e) {
         updatelocation (map,e);
     });
