@@ -92,6 +92,10 @@ function follow (map){
 function succes(e){
 
   if (e.latlng.distanceTo(goal) < 5) {
+
+    if (navigator.vibrate) {
+         navigator.vibrate(1000);
+    }
         nextgoal();
         sidebar.open('tab'+goalN);
   }
