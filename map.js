@@ -7,12 +7,12 @@ var goals =[[51.55857,5.12213],
             [51.55655,5.124533 ]
            ];
 var goal=goals[goalN];
-var goalMarker = L.marker(goal);
+var goalMarker = L.circle(goal,goalRadious);
 
 var curentlocation = zomberlust;
 var locationMarker = L.marker(goal);
 var line =undefined;
-
+var goalRadious = 10;
 
 function nextgoal(){
     goalN++;
@@ -47,6 +47,7 @@ function initMap() {
     map.setView(curentlocation,20) ;
 
     goalMarker.addTo(map);
+     
     locationMarker.addTo(map);
 
     let setMarker = function (e) {
@@ -66,7 +67,7 @@ function initMap() {
 
     map.locate({setView: true, watch :false});
 
-    let edgeLayer = L.edgeMarker(goal);//.bindTooltip("goal").openTooltip();
+    let edgeLayer = L.edgeMarker(goal);
     edgeLayer.addTo(map);
     map.zoomControl.setPosition('topright');
 
@@ -94,7 +95,7 @@ function follow (map){
 function succes(e){
 
   if (typeof(goal) !== 'undefined') {
-      if (e.latlng.distanceTo(goal) < 5) {
+      if (e.latlng.distanceTo(goal) < goalRadious) {
       goal=undefined;
         if (navigator.vibrate) {
              navigator.vibrate(1000);
