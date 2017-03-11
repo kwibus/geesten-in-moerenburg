@@ -9,10 +9,13 @@ var goals =[[51.55857,5.12213],
 var goal=goals[goalN];
 var goalMarker = L.circle(goal,goalRadious);
 
-var curentlocation = zomberlust;
+var locationRadius=0;
+var curentlocation = undefined;
 var locationMarker = L.marker(goal);
+
 var line =undefined;
 var goalRadious = 10;
+var accuracyCircle = undefined;
 
 function nextgoal(){
     goalN++;
@@ -30,33 +33,42 @@ function onLocationError(e) {
 
 function updatelocation(map,e) {
 
+  locationRadius=e.accuracy/2
+
   locationMarker.setLatLng(e.latlng);
   map.panTo(e.latlng);
+
   if (typeof(goal) !== 'undefined') {
       line.setLatLngs([e.latlng,goal]);
   }
 }
+function getLocationRadious(){return locationRadius;}
 
 function initMap() {
     var map = L.map('map');
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+            }).addTo(map);;
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    map.setView(curentlocation,20) ;
+    map.setView(zomberlust,20) ;
 
     goalMarker.addTo(map);
-     
-    locationMarker.addTo(map);
 
     let setMarker = function (e) {
         let radius = e.accuracy / 2
-        locationMarker.bindTooltip("You are within " + Math.round (radius) + " meters from this point").openPopup();
+        locationMarker.bindTooltip("You are within " + Math.round (radius) + " meters from this point");
         updatelocation(map,e);
     }
+    locationMarker.bindTooltip("You are within " + Math.round (locationRadius) + " meters from this point");
+
+    locationMarker.get
+    locationMarker.on ('tooltipopen', function () { accuracyCircle=L.circle (locationMarker.getLatLng(), getLocationRadious()).addTo(map);} );
+    locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
 
     map.once('locationfound', setMarker);
+    locationMarker.addTo(map);
+
+
     map.on('locationerror', onLocationError);
 
     L.control.scale( {
@@ -74,11 +86,8 @@ function initMap() {
     sidebar.addTo(map);
     sidebar.open("Introductie")
 
-    // create a red polyline from an array of LatLng points
-    var latlngs = [ curentlocation ,goal];
+    var latlngs = [ goal,goal];
     line = L.polyline(latlngs, {color: 'green'}).addTo(map);
-    // zoom the map to the polyline
-    // map.fitBounds(polyline.getBounds());
 
     return map
 }
@@ -92,6 +101,7 @@ function follow (map){
 
     map.locate({setView: false, watch :true, timeout:5000});
 }
+
 function succes(e){
 
   if (typeof(goal) !== 'undefined') {
@@ -104,5 +114,6 @@ function succes(e){
       }
   }
 }
+
 var map = initMap();
 follow(map);
