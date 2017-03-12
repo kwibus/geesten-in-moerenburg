@@ -17,7 +17,7 @@ function incorrect () {
 
 function nextTab (){
     currentquestion++;
-    document.getElementById("tab"+currentquestion).style.display="block";
+    document.getElementById("tab"+currentquestion).classList.remove("disabled");
     sidebar.open("opdracht"+currentquestion);
 }
 
