@@ -1,5 +1,5 @@
 'use strict';
-var zomberlust=L.latLng(51.55938707072835,5.11301726102829)
+var zomberlust=L.latLng(51.55938707072835,5.11301726102829);
 var sidebar=L.control.sidebar('sidebar');
 
 var goalN = 0;
@@ -12,7 +12,7 @@ goalMarker.openPopup();
 
 var locationRadius=0;
 var curentlocation = undefined;
-var locationMarker = L.marker(goal);
+var locationMarker = L.marker([90,0]);
 
 var line = undefined;
 var goalRadious = 10;
