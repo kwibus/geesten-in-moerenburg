@@ -10,12 +10,6 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
     <script src="Leaflet.EdgeMarker.js"></script>
-    <!-- <script src="Leaflet.EdgeMarker.js"></script> -->
-
-     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  -->
-     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  -->
-     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  -->
-    <!-- <script src="html5&#45;qrcode.js"></script> -->
 
     <link rel="stylesheet" href="css/leaflet-sidebar.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -34,82 +28,84 @@
   <body>
 
     <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
-        <div class="sidebar-tabs">
-            <ul role="tablist">
-                <li><a href="#Introductie" role="tab"><i class="fa fa-bars"></i></a></li>
-                <li><a href="#opdracht1"  id="tab1" style="display:none"role="tab"><b>1.</b></a></li>
-                <li><a href="#opdracht2"  id="tab2" style="display:none"role="tab"><b>2.</b></a></li>
-                <li><a href="#opdracht3"  id="tab3" style="display:none"role="tab"><b>3.</b></a></li>
-                <li><a href="#opdracht4"  id="tab4" style="display:none"role="tab"><b>4.</b></a></li>
-                <li><a href="#opdracht5"  id="tab5" style="display:none"role="tab"><b>5.</b></a></li>
-                <li><a href="#opdracht6"  id="tab6" style="display:none"role="tab"><b>6.</b></a></li>
-                <li><a href="#opdracht7"  id="tab7" style="display:none"role="tab"><b>7.</b></a></li>
-                <li><a href="#opdracht8"  id="tab8" style="display:none"role="tab"><b>8.</b></a></li>
-                <li><a href="#opdracht9"  id="tab9" style="display:none"role="tab"><b>9.</b></a></li>
-                <li><a href="#opdracht10" id="tab10" style="display:none"role="tab"><b>10.</b></a></li>
-                <li><a href="#opdracht11" id="tab11" style="display:none"role="tab"><b>11.</b></a></li>
-                <li><a href="#opdracht12" id="tab12" style="display:none"role="tab"><b>12.</b></a></li>
-            </ul>
+      <!-- Nav tabs -->
+      <div class="sidebar-tabs">
+        <ul role="tablist">
+          <li><a href="#Introductie" role="tab"><i class="fa fa-bars"></i></a></li>
+          <li><a href="#opdracht1"  id="tab1" style="display:none"role="tab"><b>1.</b></a></li>
+          <li><a href="#opdracht2"  id="tab2" style="display:none"role="tab"><b>2.</b></a></li>
+          <li><a href="#opdracht3"  id="tab3" style="display:none"role="tab"><b>3.</b></a></li>
+          <li><a href="#opdracht4"  id="tab4" style="display:none"role="tab"><b>4.</b></a></li>
+          <li><a href="#opdracht5"  id="tab5" style="display:none"role="tab"><b>5.</b></a></li>
+          <li><a href="#opdracht6"  id="tab6" style="display:none"role="tab"><b>6.</b></a></li>
+          <li><a href="#opdracht7"  id="tab7" style="display:none"role="tab"><b>7.</b></a></li>
+          <li><a href="#opdracht8"  id="tab8" style="display:none"role="tab"><b>8.</b></a></li>
+          <li><a href="#opdracht9"  id="tab9" style="display:none"role="tab"><b>9.</b></a></li>
+          <li><a href="#opdracht10" id="tab10" style="display:none"role="tab"><b>10.</b></a></li>
+          <li><a href="#opdracht11" id="tab11" style="display:none"role="tab"><b>11.</b></a></li>
+          <li><a href="#opdracht12" id="tab12" style="display:none"role="tab"><b>12.</b></a></li>
+        </ul>
 
-            <ul role="tablist">
-                <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-map"></i></a></li>
-                <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-gear"></i></a></li>
-            </ul>
+        <ul role="tablist">
+          <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-map"></i></a></li>
+          <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-gear"></i></a></li>
+        </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="sidebar-content">
+        <div class="sidebar-pane" id="Introductie">
+          <h1 class="sidebar-header">
+            Introductie:
+            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>
+          <p>
+          In de vorige eeuw, in 1914, werd uit de Buunder, ook wel Grollegat genoemd, een snoek gevangen, meer dan anderhalve meter lang. Maar heel erg vreemd was dat deze snoek een soldaten- cape droeg. Het bleek de cape te zijn van officier de Roo, officier van een Tilburgse compagnie soldaten.
+          In 1831 was de Roo verdronken bij het zwemmen in de Buunder, een reddingspoging mislukte.
+          Kennelijk had het heldere water van De Buunder grote aantrekkingskracht op jongelieden.
+          In 1844 op tweede kerstdag voltrok zich weer een drama. De 19 jarige zoon van Adriaan Maiers verdronk bij het schaatsen, vluchtend voor lansiers van het Tilburgse garnizoen die de schaatsende burgers van het ijs joegen.
+
+          </p>
+          <p>
+          De geesten van De Roo en Maier hebben nooit rust gevonden. Zij bleven vele tientallen jaren zwerven over de moerassige gronden van Moerenburg. Soms zochten zij de warmte op van het café de Baars niet ver gelegen van De Buunder, daar zwaaide waardin, Mie De Baars, de scepter. De Roo en Maier verborgen zich op zolder van het café.                     Door de kieren van het plafond hoorden zij het café bezoek druk praten over de ruzies tussen Tilburg, Oisterwijk en Berkel Entschot. Berkel Enschot en Oisterwijk klaagden over het vervuilde water dat door de oude en nieuwe Leij en de Korvelsche waterloop naar hun gronden stroomde. Gewassen wilden niet meer groeien, koeien die van het water dronken werden ziek, gaven giftige melk en vielen dood neer……… De discussies liepen hoog op en Mie de Baars moest heel wat keren de ruziënde partijen uit elkaar houden. De Roo en Maier hoorden het aan en besloten hun krachten aan te wenden en te proberen het water te zuiveren. Misschien zou het voldoen aan deze opdracht hun rust schenken. Vol van dit voornemen, wilden De Roo en Maier weer huns weegs gaan, of uit een hoek van de zolder kwam een donkere en vriendelijke stem:
+
+          <p>
+          <q>Ik ben de geest van Pastoor Wichmans, schrik niet, ook ik zoek al vanaf 1642, het jaar van mijn sterven, rust. Sinds Huize Moerenburg in 1750  is afgebroken woon ik hier op zolder. Huize Moerenburg was in bezit van de abdij van Tongerlo. Ik heb mijn abt beloofd te waken over de wateren van Moerenburg tot er jongeren komen die mijn taak overnemen. Ik smeek jullie, neem mij mee naar de restanten van het landhuis. Als jullie op de weg er naar toe 8 opdrachten voldoen, vinden wij onze welverdiende eeuwige rust en zullen de wateren van Moerenburg zuiver zijn! Daarna zullen jullie wel  jonge Tilburgers moeten vinden die dezelfde opdrachten uitvoeren.
+          </q>
+          </p>
+
+          </p>
+
+          <p> Wie dit spel gaat spelen treedt in de voetsporen van Maier en de Roo en gaat de opdrachten uitvoeren.  </p>
+
+          <p> Ga nu op weg naar de <a href="#" style="cursor:pointer;" onclick="highlightGoal();">Buunder!!!</a> </p>
         </div>
 
-        <!-- Tab panes -->
-        <div class="sidebar-content">
-            <div class="sidebar-pane" id="Introductie">
-                <h1 class="sidebar-header">
-                    Introductie:
-                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-              <p>
-              In de vorige eeuw, in 1914, werd uit de Buunder, ook wel Grollegat genoemd, een snoek gevangen, meer dan anderhalve meter lang. Maar heel erg vreemd was dat deze snoek een soldaten- cape droeg. Het bleek de cape te zijn van officier de Roo, officier van een Tilburgse compagnie soldaten.
-              In 1831 was de Roo verdronken bij het zwemmen in de Buunder, een reddingspoging mislukte.
-              Kennelijk had het heldere water van De Buunder grote aantrekkingskracht op jongelieden.
-              In 1844 op tweede kerstdag voltrok zich weer een drama. De 19 jarige zoon van Adriaan Maiers verdronk bij het schaatsen, vluchtend voor lansiers van het Tilburgse garnizoen die de schaatsende burgers van het ijs joegen.
+        <div class="sidebar-pane" id="opdracht1">
+          <h1 class="sidebar-header">Opdracht 1.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          <p>
+          Je staat hier bij de Korvelse waterloop, aan de zuidzij,
+          Ooit vervuild evenals de Nieuwe en de Oude Leij.
+          Ons spel zal gaan over echte helden van dit gebied.
+          Over luttele minuten weet je meer, nu nog niet.
+          Kijk om je heen, je bent in de natuur!
+          Geniet vooral van dit milieuvriendelijk uur.
+          Wandel door naar het volgende QR bord,
+          Je zult zien dat het bij de Buunder pas echt spannend wordt.
+          Ooit schreef iemand daar een waarschuwend gedicht
+          Het was een geestelijke, hij deed zijn plicht:
+          </p>
 
-              </p>
-              <p>
-              De geesten van De Roo en Maier hebben nooit rust gevonden. Zij bleven vele tientallen jaren zwerven over de moerassige gronden van Moerenburg. Soms zochten zij de warmte op van het café de Baars niet ver gelegen van De Buunder, daar zwaaide waardin, Mie De Baars, de scepter. De Roo en Maier verborgen zich op zolder van het café.                     Door de kieren van het plafond hoorden zij het café bezoek druk praten over de ruzies tussen Tilburg, Oisterwijk en Berkel Entschot. Berkel Enschot en Oisterwijk klaagden over het vervuilde water dat door de oude en nieuwe Leij en de Korvelsche waterloop naar hun gronden stroomde. Gewassen wilden niet meer groeien, koeien die van het water dronken werden ziek, gaven giftige melk en vielen dood neer……… De discussies liepen hoog op en Mie de Baars moest heel wat keren de ruziënde partijen uit elkaar houden. De Roo en Maier hoorden het aan en besloten hun krachten aan te wenden en te proberen het water te zuiveren. Misschien zou het voldoen aan deze opdracht hun rust schenken. Vol van dit voornemen, wilden De Roo en Maier weer huns weegs gaan, of uit een hoek van de zolder kwam een donkere en vriendelijke stem:
-
-              <p>
-              <q>Ik ben de geest van Pastoor Wichmans, schrik niet, ook ik zoek al vanaf 1642, het jaar van mijn sterven, rust. Sinds Huize Moerenburg in 1750  is afgebroken woon ik hier op zolder. Huize Moerenburg was in bezit van de abdij van Tongerlo. Ik heb mijn abt beloofd te waken over de wateren van Moerenburg tot er jongeren komen die mijn taak overnemen. Ik smeek jullie, neem mij mee naar de restanten van het landhuis. Als jullie op de weg er naar toe 8 opdrachten voldoen, vinden wij onze welverdiende eeuwige rust en zullen de wateren van Moerenburg zuiver zijn! Daarna zullen jullie wel  jonge Tilburgers moeten vinden die dezelfde opdrachten uitvoeren.
-              </q>
-              </p>
-
-              </p>
-
-              <p> Wie dit spel gaat spelen treedt in de voetsporen van Maier en de Roo en gaat de opdrachten uitvoeren.  </p>
-
-              <p> Ga nu op weg naar de <a href="#" style="cursor:pointer;" onclick="highlightGoal();">Buunder!!!</a> </p>
-            </div>
-
-            <div class="sidebar-pane" id="opdracht1">
-                <h1 class="sidebar-header">Opdracht 1.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          <div id ="hint1" style="display:none">
+            <h2>
+              Hint:
+            </h2>
             <p>
-            Je staat hier bij de Korvelse waterloop, aan de zuidzij,
-            Ooit vervuild evenals de Nieuwe en de Oude Leij.
-            Ons spel zal gaan over echte helden van dit gebied.
-            Over luttele minuten weet je meer, nu nog niet.
-            Kijk om je heen, je bent in de natuur!
-            Geniet vooral van dit milieuvriendelijk uur.
-            Wandel door naar het volgende QR bord,
-            Je zult zien dat het bij de Buunder pas echt spannend wordt.
-            Ooit schreef iemand daar een waarschuwend gedicht
-            Het was een geestelijke, hij deed zijn plicht:
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
+          </div>
 
-            <p id ="hint1" style="display:none">
-            hint
-
-
-            <p>
-
-
-            <p> <q>
+          <p> <q>
             Valsche lippen hoorde ik fluisteren,
             woorden druppelend vol venijn
             dat veel doden in uw duistren
@@ -117,52 +113,37 @@
             die gij eerst door 't lief geklater
             van uw frisse witte water,
             lijk sirenenlied gelokt.
-            </q></p>
+          </q></p>
 
-                  <ol type="A" id="questions1" >
-                    <li>
-                      <button class="question" onclick="correct();">
-                        Een jonge snoek kan zelf nog opgevreten worden en verstopt zich achter waterplanten.
-                        <img id="mark1"src="images/transparent-green-checkmark-hi.png" style="display:none; width:8%;float:right;" >
-                      </button>
-                    </li>
-                    <li>
-                      <button class="question" onclick="incorrect();">
-                          Een jonge Snoek jaagt op zicht, een oudere op reuk.
-                        </button>
-                    </li>
-                    <li>
-
-                      <button class="question" onclick="incorrect();">
-                          Een oude Snoek heeft weerstad tegen vervuild water opgebouwd.
-                      </button>
-                    </li>
-                    <li>
-                      <button class="question" onclick="incorrect();">
-                         Een oude snoek is traag en voelt zich veilig in donker, vervuild water.
-                      </button>
-                    </li>
-                  </ol>
-
-            </div>
-            <div class="sidebar-pane" id="opdracht2">
-                <h1 class="sidebar-header">Opdracht 2.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-
-                <!-- <div id="reader" style="width:300px;height:250px"> -->
-                <!-- </div> -->
-                <!--   <script type="text/javascript"> -->
-                <!-- $('#reader').html5_qrcode(function(data){ -->
-                <!--   // do something when code is read -->
-                <!-- }, -->
-                <!--   function(error){ -->
-                <!--     //show read errors  -->
-                <!--   }, function(videoError){ -->
-                <!--     //the video stream could be opened -->
-                <!--   } -->
-                <!-- ); -->
-                <!-- </script> -->
-            </div>
+          <ol type="A" id="questions1" >
+            <li>
+              <button class="question" onclick="correct();">
+                Een jonge snoek kan zelf nog opgevreten worden en verstopt zich achter waterplanten.
+                <img id="mark1"src="images/transparent-green-checkmark-hi.png" style="display:none; width:8%;float:right;" >
+              </button>
+            </li>
+            <li>
+              <button class="question" onclick="incorrect();">
+                Een jonge Snoek jaagt op zicht, een oudere op reuk.
+              </button>
+            </li>
+            <li>
+              <button class="question" onclick="incorrect();">
+                Een oude Snoek heeft weerstad tegen vervuild water opgebouwd.
+              </button>
+            </li>
+            <li>
+              <button class="question" onclick="incorrect();">
+                Een oude snoek is traag en voelt zich veilig in donker, vervuild water.
+              </button>
+            </li>
+          </ol>
         </div>
+        <div class="sidebar-pane" id="opdracht2">
+          <h1 class="sidebar-header">Opdracht 2.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+
+        </div>
+      </div>
     </div>
 
     <script src="leaflet-sidebar.js"></script>
@@ -170,5 +151,5 @@
 
     <script src="map.js"> </script>
     <!-- <progress value="90" max="100" style="width: 100vw; height:1vh margin:0px bottom:0px,background&#45;color=transparent"> </progress> -->
-    </body>
+  </body>
 </html>
