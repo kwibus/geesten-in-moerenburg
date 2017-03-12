@@ -7,7 +7,7 @@ var goals =[[51.55857,5.12213],
             [51.55655,5.124533 ]
            ];
 var goal=goals[goalN];
-var goalMarker = L.circle(goal,goalRadious);
+var goalMarker = L.circle(goal,goalRadious).bindTooltip("nieuw opdracht");
 
 var locationRadius=0;
 var curentlocation = undefined;
@@ -16,6 +16,11 @@ var locationMarker = L.marker(goal);
 var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
+
+function highlightGoal() {
+  sidebar.close();
+  map.fitBounds(line.getBounds());
+}
 
 function nextgoal(){
     goalN++;
