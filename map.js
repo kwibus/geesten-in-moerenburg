@@ -104,6 +104,14 @@ function initMap() {
     var latlngs = [ goal,goal];
     line = L.polyline(latlngs, {color: 'green'}).addTo(map);
 
+    L.easyButton( {
+        position: 'topright',
+        states: [{
+            icon:'fa-map-marker',
+            onClick: function(btn, map){ map.panTo(locationMarker.getLatLng());}
+        }]
+    }).addTo(map);
+
     return map
 }
 
