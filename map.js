@@ -13,7 +13,7 @@ var locationRadius=0;
 var curentlocation = undefined;
 var locationMarker = L.marker(goal);
 
-var line =undefined;
+var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
 
@@ -34,9 +34,15 @@ function onLocationError(e) {
 function updatelocation(map,e) {
 
   locationRadius=e.accuracy/2
-
   locationMarker.setLatLng(e.latlng);
-  map.panTo(e.latlng);
+
+  var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
+  if ( bounds.contains(e.latlng) ){
+    map.setMaxBounds(bounds);
+
+  }else {
+    map.setMaxBounds( undefined);
+  }
 
   if (typeof(goal) !== 'undefined') {
       line.setLatLngs([e.latlng,goal]);
@@ -58,10 +64,11 @@ function initMap() {
         let radius = e.accuracy / 2
         locationMarker.bindTooltip("You are within " + Math.round (radius) + " meters from this point");
         updatelocation(map,e);
+        map.fitBounds(line.getBounds());
     }
     locationMarker.bindTooltip("You are within " + Math.round (locationRadius) + " meters from this point");
 
-    locationMarker.get
+
     locationMarker.on ('tooltipopen', function () { accuracyCircle=L.circle (locationMarker.getLatLng(), getLocationRadious()).addTo(map);} );
     locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
 
@@ -81,6 +88,7 @@ function initMap() {
 
     let edgeLayer = L.edgeMarker(goal);
     edgeLayer.addTo(map);
+
     map.zoomControl.setPosition('topright');
 
     sidebar.addTo(map);
