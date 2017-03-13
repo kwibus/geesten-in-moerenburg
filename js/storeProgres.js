@@ -11,7 +11,6 @@ function checkCurrentquestion () {
             }else{
                 setcurrentQuestion(lastquestion);
             }
-lastquestion
         }else {
 
             sessionLastquestion =  sessionStorage.getItem("currentquestion");
@@ -22,7 +21,7 @@ lastquestion
                 if (confirm("wil je verdergaan waar je gebleven was")){
                     setcurrentQuestion(lastquestion);
                 } else {
-                    localStorage.removeItem("currentquestion");
+                    deleteSaves();
                     allowStorage=0;
                     lastquestion=0;
                 }
@@ -34,6 +33,10 @@ lastquestion
         lastquestion= 0;
     }
     return lastquestion;
+}
+function deleteSaves (){
+  sessionStorage.removeItem("currentquestion");
+  localStorage.removeItem("currentquestion");
 }
 
 function trySave (){
