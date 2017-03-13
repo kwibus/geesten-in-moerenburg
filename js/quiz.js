@@ -1,5 +1,13 @@
 
-currentquestion=0;
+currentquestion=checkCurrentquestion();
+
+function setcurrentQuestion(n){
+    currentquestion=0;
+    for (var i = 0; i< n;i++){
+        nextTab();
+        nextgoal();
+    }
+}
 
 function correct(){
     document.getElementById("mark"+currentquestion).style.display="block";
@@ -8,6 +16,7 @@ function correct(){
     for (var q of  questions){
         q.disabled=true;
     }
+    trySave();
     nextgoal();
 }
 function incorrect () {
