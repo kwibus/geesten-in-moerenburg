@@ -138,10 +138,10 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
     open: function(id) {
         var i, child;
         if (typeof(this._tabstate)=== 'undefined'){
-            history.pushState(this._tabstate,"",this._tabstate);
+            history.pushState(this._tabstate,"");
         }
         this._tabstate=id;
-        history.replaceState( this._tabstate,"",id);
+        history.replaceState( this._tabstate,"");
 
         // hide old active contents and show new content
         for (i = this._panes.length - 1; i >= 0; i--) {
