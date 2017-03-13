@@ -25,8 +25,12 @@ function highlightGoal() {
 }
 
 function nextgoal(){
-    goalN++;
-    goal=goals[goalN];
+   setgoal (goalN++);
+}
+
+function setgoal(n){
+    goalN=n
+    goal=goals[n];
     line.getLatLngs()[2] = goal;
     goalMarker.setLatLng(goal);
 }
