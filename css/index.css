@@ -22,3 +22,10 @@
 .question:disabled{
     background-color:#0054b9;
 }
+.textmarker{
+    height:1.2em;
+    vertical-align:middle
+}
+.hidden{
+  display:none;
+}
