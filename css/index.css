@@ -6,9 +6,7 @@
     color:#eee;
     margin-bottom:10px;
     padding:10px;
-    /* border-radius: 15px; */
     width:100%;
-    /* box-shadow: 0 4px #999; */
     box-shadow: 4px 4px 5px grey;
 }
 
@@ -28,4 +26,8 @@
 }
 .hidden{
   display:none;
+}
+.questionmark{
+  width:8%;
+  float:right;
 }
