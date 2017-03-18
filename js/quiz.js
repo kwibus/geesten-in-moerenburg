@@ -5,9 +5,7 @@ function setcurrentQuestion(n){
     currentquestion=0;
     while (currentquestion < n){
         nextTab();
-        if (document.getElementById("questions"+curentlocation)){
           anserCorrect();
-        }
         nextgoal();
     }
 }
@@ -20,11 +18,16 @@ function correct(){
 }
 
 function anserCorrect(){
-    document.getElementById("mark"+currentquestion).classList.remove("hidden");
-    questions=document.getElementById("questions"+currentquestion)
-        .getElementsByClassName("question");
-    for (var q of  questions){
-        q.disabled=true;
+
+    if (document.getElementById("questions"+curentlocation)){
+      document.getElementById("mark"+currentquestion).classList.remove("hidden");
+      questions=document.getElementById("questions"+currentquestion)
+          .getElementsByClassName("question");
+      for (var q of  questions){
+          q.disabled=true;
+      }
+    }else if (document.getElementById("next1")){
+      nextgoal();
     }
 }
 
