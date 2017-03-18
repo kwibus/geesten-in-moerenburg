@@ -2,7 +2,7 @@
     text-align: left;
     border:none;
     outline: none;
-    background-color:#0074d9;
+    background-color:#6DA927;
     color:#eee;
     margin-bottom:10px;
     padding:10px;
@@ -11,14 +11,14 @@
 }
 
 .question:enabled:hover {
-    background-color: #3e8e41
+    background-color: #91B327
 }
 .question:enabled:active {
     transform: translateY(4px);
 }
 
 .question:disabled{
-    background-color:#0054b9;
+    background-color:#356c24;
 }
 .textmarker{
     height:1.2em;
