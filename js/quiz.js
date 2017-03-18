@@ -16,7 +16,7 @@ function correct(){
     nextgoal();
 }
 function anserCorrect(){
-    document.getElementById("mark"+currentquestion).style.display="block";
+    document.getElementById("mark"+currentquestion).classList.remove("hidden");
     questions=document.getElementById("questions"+currentquestion)
         .getElementsByClassName("question");
     for (var q of  questions){
