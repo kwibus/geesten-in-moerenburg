@@ -16,7 +16,9 @@ function correct(){
     anserCorrect();
     trySave();
     nextgoal();
+    highlightGoal();
 }
+
 function anserCorrect(){
     document.getElementById("mark"+currentquestion).classList.remove("hidden");
     questions=document.getElementById("questions"+currentquestion)
