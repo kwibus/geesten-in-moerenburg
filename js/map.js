@@ -33,7 +33,7 @@ function highlightGoal() {
 }
 
 function nextgoal(){
-   setgoal (goalN++);
+   setgoal (++goalN);
 }
 
 function setgoal(n){
