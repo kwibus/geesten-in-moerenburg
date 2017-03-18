@@ -26,8 +26,6 @@ function anserCorrect(){
       for (var q of  questions){
           q.disabled=true;
       }
-    }else if (document.getElementById("next1")){
-      nextgoal();
     }
 }
 

@@ -145,7 +145,11 @@ function succes(e){
         if (navigator.vibrate) {
              navigator.vibrate(1000);
         }
-            nextTab();
+        nextTab();
+        if (document.getElementById("next"+currentquestion)){
+         nextgoal();
+        }
+
       }
   }
 }
