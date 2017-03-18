@@ -3,9 +3,17 @@ var zomberlust=L.latLng(51.55938707072835,5.11301726102829);
 var sidebar=L.control.sidebar('sidebar');
 
 var goalN = 0;
-var goals =[[51.55857,5.12213],
-            [51.55655,5.124533 ]
-           ];
+var goals = [
+    [51.55857 ,5.12213],
+    [51.55655 ,5.124533],
+    [51.555333,5.1225],
+    [51.5557  ,5.1212]
+    [51.554233,5.120233],
+    [51.553717,5.13185],
+    [51.55535 ,5.11645],
+    [51.5565  ,5.114183],
+    [51.557067,5.117467],
+    ];
 var goal=goals[goalN];
 var goalMarker = L.circle(goal,goalRadious).bindPopup("<img src='images/testImage.jpg'style='with:10%'> ");
 goalMarker.openPopup();
