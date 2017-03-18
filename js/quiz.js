@@ -5,7 +5,9 @@ function setcurrentQuestion(n){
     currentquestion=0;
     while (currentquestion < n){
         nextTab();
-        anserCorrect();
+        if (document.getElementById("questions"+curentlocation)){
+          anserCorrect();
+        }
         nextgoal();
     }
 }
