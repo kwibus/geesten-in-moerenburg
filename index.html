@@ -18,12 +18,13 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
-<title>Geesten in Moerenburg</title>
+    <title>Geesten in Moerenburg</title>
 
     <style>
         body {
             padding: 0;
             margin: 0;
+            overflow: hidden;
           }
     </style>
   </head>
@@ -34,21 +35,21 @@
       <div class="sidebar-tabs">
         <ul role="tablist">
           <li><a href="#Introductie" role="tab"><i class="fa fa-bars"></i></a></li>
-          <li id="tab1" class="disabled"> <a href="#opdracht1"  id="tab1" role="tab"><b>1.</b></a></li>
-          <li id="tab2"  class="disabled"><a href="#opdracht2"  role="tab"><b>2.</b></a></li>
-          <li id="tab3"  class="disabled"><a href="#opdracht3"  role="tab"><b>3.</b></a></li>
-          <li id="tab4"  class="disabled"><a href="#opdracht4"  role="tab"><b>4.</b></a></li>
-          <li id="tab5"  class="disabled"><a href="#opdracht5"  role="tab"><b>5.</b></a></li>
-          <li id="tab6"  class="disabled"><a href="#opdracht6"  role="tab"><b>6.</b></a></li>
-          <li id="tab7"  class="disabled"><a href="#opdracht7"  role="tab"><b>7.</b></a></li>
-          <li id="tab8"  class="disabled"><a href="#opdracht8"  role="tab"><b>8.</b></a></li>
-          <li id="tab9"  class="disabled"><a href="#opdracht9"  role="tab"><b>9.</b></a></li>
-          <li id="tab10" class="disabled"><a href="#opdracht10" role="tab"><b>10.</b></a></li>
-          <li id="tab11" class="disabled"><a href="#opdracht11" role="tab"><b>11.</b></a></li>
-          <li id="tab12" class="disabled"><a href="#opdracht12" role="tab"><b>12.</b></a></li>
+          <li id="tab1" class="disabled"> <a href="#stop1"  id="tab1" role="tab"><b>1.</b></a></li>
+          <li id="tab2"  class="disabled"><a href="#stop2"  role="tab"><b>2.</b></a></li>
+          <li id="tab3"  class="disabled"><a href="#stop3"  role="tab"><b>3.</b></a></li>
+          <li id="tab4"  class="disabled"><a href="#stop4"  role="tab"><b>4.</b></a></li>
+          <li id="tab5"  class="disabled"><a href="#stop5"  role="tab"><b>5.</b></a></li>
+          <li id="tab6"  class="disabled"><a href="#stop6"  role="tab"><b>6.</b></a></li>
+          <li id="tab7"  class="disabled"><a href="#stop7"  role="tab"><b>7.</b></a></li>
+          <li id="tab8"  class="disabled"><a href="#stop8"  role="tab"><b>8.</b></a></li>
+          <li id="tab9"  class="disabled"><a href="#stop9"  role="tab"><b>9.</b></a></li>
+          <li id="tab10" class="disabled"><a href="#stop10" role="tab"><b>10.</b></a></li>
+          <li id="tab11" class="disabled"><a href="#stop11" role="tab"><b>11.</b></a></li>
+          <li id="tab12" class="disabled"><a href="#stop12" role="tab"><b>12.</b></a></li>
         </ul>
         <ul role="tablist">
-          <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-map"></i></a></li>
+          <!-- <li><a onclick="sidebar.close();" role="tab"><i class="fa fa&#45;map"></i></a></li> -->
           <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
         </ul>
       </div>
@@ -58,7 +59,7 @@
       <div class="sidebar-content">
         <div class="sidebar-pane" id="Introductie">
           <h1 class="sidebar-header">
-            Introductie:
+            Introductie van spel:
             <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
           </h1>
           <p>
@@ -101,8 +102,8 @@
           <a href="#" onclick="highlightGoal();"> <b>Volg de pijl naar de volgende aanwijzing.</b> </a>
         </div>
 
-        <div class="sidebar-pane" id="opdracht1">
-          <h1 class="sidebar-header">Opdracht 1.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        <div class="sidebar-pane" id="stop1">
+          <h1 class="sidebar-header">Stop 1.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
           </h1>
           <p>
           Kennelijk had het heldere water van De Buunder grote aantrekkingskracht op jongeren. Een
@@ -124,8 +125,8 @@
           </a>
         </div>
 
-        <div class="sidebar-pane" id="opdracht2">
-          <h1 class="sidebar-header">Opdracht 2.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop2">
+          <h1 class="sidebar-header">Stop 2.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
           <p>
           Hier aan de oevers van de Buunder of het Grollegat.
@@ -140,7 +141,7 @@
           Niet één, het zijn er acht Die allen moeten worden voldaan Alvorens we Huize Moerenburg binnen gaan:
           </p>
 
-          <div id ="hint2" classe="hidden">
+          <div id ="hint2" class="hidden">
             <h2>
               Hint:
             </h2>
@@ -179,8 +180,9 @@
           </ol>
         </div>
 
-        <div class="sidebar-pane" id="opdracht3">
-          <h1 class="sidebar-header">Opdracht 3.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop3">
+
+          <h1 class="sidebar-header">Stop 3. <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
           <img src="images/ijsvogel.jpg" style="width:100%"/>
           <p>
 
@@ -229,8 +231,8 @@
           </ol type="A" id="questions3" >
         </div>
 
-        <div class="sidebar-pane" id="opdracht4">
-          <h1 class="sidebar-header">Opdracht 4.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop4">
+          <h1 class="sidebar-header">Stop 4.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
           <img src="images/wilg.jpg" style="width:100%"/>
           <p>
           Met de voeten in de moerige grond
@@ -287,8 +289,8 @@
           </ol>
         </div>
 
-        <div class="sidebar-pane" id="opdracht5">
-          <h1 class="sidebar-header">Opdracht 5.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop5">
+          <h1 class="sidebar-header">Stop 5.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
           <p>
           De Roo en Maier zagen op hun tocht wel vreemde gasten:
@@ -337,8 +339,8 @@
             </li>
           </ol>
         </div>
-        <div class="sidebar-pane" id="opdracht6">
-          <h1 class="sidebar-header">Opdracht 6.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop6">
+          <h1 class="sidebar-header">Stop 6.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
           <img src="images/grijzenAbelen.jpg" style="width:100%"/>
           <p>
@@ -387,8 +389,8 @@
             </ol>
         </div>
 
-        <div class="sidebar-pane" id="opdracht7">
-          <h1 class="sidebar-header">Opdracht 7.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop7">
+          <h1 class="sidebar-header">Stop 7.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
           <p>
           Hier bij dit water-monument
@@ -435,8 +437,8 @@
           </ol>
         </div>
 
-        <div class="sidebar-pane" id="opdracht8">
-          <h1 class="sidebar-header">Opdracht 8.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <div class="sidebar-pane" id="stop8">
+          <h1 class="sidebar-header">Stop 8.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 
           <p>
           Ooit hadden Tilburg, Oisterwijk en Berkel een levensgroot conflict:
@@ -482,9 +484,9 @@
           </ol>
         </div>
 
-        <div class="sidebar-pane" id="opdracht9">
+        <div class="sidebar-pane" id="stop9">
 
-          <h1 class="sidebar-header">Opdracht 9.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          <h1 class="sidebar-header">Stop 9.<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
           <h2>De negende halte, Huize Moerenburg
           Zoek de geheime code bij de tegels
           Lees ze goed ook tussen de regels</h2>

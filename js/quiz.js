@@ -37,7 +37,7 @@ function incorrect () {
 function nextTab (){
     currentquestion++;
     document.getElementById("tab"+currentquestion).classList.remove("disabled");
-    sidebar.open("opdracht"+currentquestion);
+    sidebar.open("stop"+currentquestion);
 }
 
 
