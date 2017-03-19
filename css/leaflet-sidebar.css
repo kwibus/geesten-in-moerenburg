@@ -45,18 +45,21 @@
   .sidebar-left .sidebar-tabs {
     left: 0; }
   .sidebar-right .sidebar-tabs {
+
     right: 0; }
   .sidebar-tabs, .sidebar-tabs > ul {
+    overflow-y:auto;
+    height:88vh;
     position: relative;
     width: 40px;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    }
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
       height: 40px;
       color: #333;
       font-size: 12pt;
-      overflow: hidden;
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #000;
