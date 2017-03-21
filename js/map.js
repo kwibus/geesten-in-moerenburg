@@ -122,8 +122,6 @@ function initMap() {
         updatelocation(map,e);
         map.fitBounds(line.getBounds());
     }
-    locationMarker.bindTooltip("You are within " + Math.round (locationRadius) + " meters from this point");
-
 
     locationMarker.on ('tooltipopen', function () { accuracyCircle=L.circle (locationMarker.getLatLng(), getLocationRadious()).addTo(map);} );
     locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
@@ -152,6 +150,10 @@ function initMap() {
 
     var latlngs = [ goal,goal];
     line = L.polyline(latlngs, {color: 'green'}).addTo(map);
+    line.bindTooltip();
+    line.on( 'tooltipopen', function (e) {
+        e.tooltip.setContent(Math.round(locationMarker.getLatLng().distanceTo(goalMarkerCircle.getLatLng())) + "m");
+        });
 
     L.easyButton( {
         position: 'topright',
@@ -160,7 +162,6 @@ function initMap() {
             onClick: function(btn, map){ map.panTo(locationMarker.getLatLng());}
         }]
     }).addTo(map);
-
     return map
 }
 
@@ -186,7 +187,6 @@ function succes(e){
         if (document.getElementById("next"+currentquestion)){
          nextgoal();
         }
-
       }
   }
 }
