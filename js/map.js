@@ -7,7 +7,7 @@ var goals = [
     [51.558567,5.122133],
     [51.55655 ,5.124533],
     [51.555333,5.1225],
-    [51.5557  ,5.1212]
+    [51.5557  ,5.1212],
     [51.554233,5.120233],
     [51.553717,5.115183],
     [51.55535 ,5.11645],
@@ -75,7 +75,7 @@ function setPictureMarker(marker,photo){
     marker.bindPopup(
         "<figure > <img src="+photo +"> <figcaption>bunder</figcaption> </figure>"
         ,{className: 'leaflet-popup-photo',
-          minWidth: 300 }
+          minWidth: 200 }
         );
 }
 
@@ -103,13 +103,14 @@ function updatelocation(map,e) {
       line.setLatLngs([e.latlng,goal]);
   }
 }
+
 function getLocationRadious(){return locationRadius;}
 
 function initMap() {
     var map = L.map('map');
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-            }).addTo(map);;
+        attribution: '<span style="overflow:hidden; white-space:nowrap">Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community</span>'
+            }).addTo(map);
 
     map.setView(zomberlust,20) ;
 
