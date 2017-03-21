@@ -19,7 +19,7 @@ function correct(){
 
 function anserCorrect(){
 
-    if (document.getElementById("questions"+curentlocation)){
+    if (document.getElementById("questions"+currentquestion)){
       document.getElementById("mark"+currentquestion).classList.remove("hidden");
       questions=document.getElementById("questions"+currentquestion)
           .getElementsByClassName("question");
