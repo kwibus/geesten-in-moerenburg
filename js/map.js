@@ -14,9 +14,22 @@ var goals = [
     [51.5565  ,5.114183],
     [51.557067,5.117467],
     ];
+
+var images = [
+    'images/halte1.jpg',
+    'images/halte2.jpg',
+    'images/halte3.jpg',
+    'images/halte4.jpg',
+    'images/halte5.jpg',
+    'images/halte6.jpg',
+    'images/halte7.jpg',
+    'images/halte8.jpg'
+];
+
 var goal=goals[goalN];
-var goalMarker = L.circle(goal,goalRadious).bindPopup("<img src='images/testImage.jpg'style='with:10%'> ");
-goalMarker.openPopup();
+var goalMarkerCircle = L.circle(goal,goalRadious);
+var goalMarkerPhoto= L.marker(goal);
+setPictureMarker(goalMarkerPhoto,images[0]);
 
 var locationRadius=0;
 var curentlocation = undefined;
@@ -29,7 +42,7 @@ var accuracyCircle = undefined;
 function highlightGoal() {
   sidebar.close();
   map.fitBounds(line.getBounds());
-  goalMarker.openPopup();
+  goalMarkerPhoto.openPopup();
 }
 
 function nextgoal(){
@@ -40,7 +53,30 @@ function setgoal(n){
     goalN=n
     goal=goals[n];
     line.getLatLngs()[2] = goal;
-    goalMarker.setLatLng(goal);
+
+    goalMarkerCircle.setLatLng(goal);
+    goalMarkerPhoto.setLatLng(goal);
+    setPictureMarker(goalMarkerPhoto,images[goalN])
+}
+
+function setPictureMarker(marker,photo){
+
+    marker.closePopup();
+    marker.setIcon  (
+        L.icon({
+              iconUrl:photo,
+
+              iconSize:     [40, 40],
+              iconAnchor: [0, 40],
+              className: 'leaflet-popup-photo',
+                })
+        )
+
+    marker.bindPopup(
+        "<figure > <img src="+photo +"> <figcaption>bunder</figcaption> </figure>"
+        ,{className: 'leaflet-popup-photo',
+          minWidth: 300 }
+        );
 }
 
 function onLocationError(e) {
@@ -77,7 +113,8 @@ function initMap() {
 
     map.setView(zomberlust,20) ;
 
-    goalMarker.addTo(map);
+    goalMarkerCircle.addTo(map);
+    goalMarkerPhoto.addTo(map);
 
     let setMarker = function (e) {
         let radius = e.accuracy / 2
