@@ -141,9 +141,9 @@ function initMap() {
 
     map.locate({setView: true, watch :false});
 
-    let edgeLayer = L.edgeMarker(goal);
-    edgeLayer.addTo(map);
-
+    // let edgeLayer = L.edgeMarker(goal);
+    // edgeLayer.addTo(map);
+    goalMarkerPhoto.bindEdgeMarker();
     map.zoomControl.setPosition('topright');
 
     sidebar.addTo(map);
