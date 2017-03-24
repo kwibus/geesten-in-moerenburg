@@ -185,6 +185,7 @@ function succes(e){
              navigator.vibrate(1000);
         }
         nextTab();
+        trySave();
         if (document.getElementById("next"+currentquestion)){
          nextgoal();
         }
