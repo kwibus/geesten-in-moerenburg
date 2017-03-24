@@ -40,4 +40,21 @@ function nextTab (){
     sidebar.open("stop"+currentquestion);
 }
 
+rebuscorect=0
+rebusAnser="hetslotvanhetspel"
+function checkKey (id,n){
+    if (id.value===rebusAnser.charAt(n)){
+        id.disabled=true;
+        document.getElementById("markWrong"+n).classList.add("hidden");
+        document.getElementById("markCorrect"+n).classList.remove("hidden");
+        rebuscorect++;
+        if(rebuscorect>=rebusAnser.length)
+        {
 
+            document.getElementById("tab10").classList.remove("disabled");
+            sidebar.open("stop10");
+        }
+    }else {
+        document.getElementById("markWrong"+n).classList.remove("hidden");
+    }
+}
