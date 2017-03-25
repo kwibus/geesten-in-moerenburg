@@ -54,7 +54,7 @@ function checkKey (id,n){
             document.getElementById("tab10").classList.remove("disabled");
             sidebar.open("stop10");
 
-            var audio = new Audio("victoryff.swf.mp3");
+            var audio = new Audio("victory.mp3");
             audio.play();
         }
     }else {
