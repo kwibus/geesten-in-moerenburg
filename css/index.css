@@ -1,6 +1,8 @@
 .question{
     text-align: left;
     border:none;
+    display: inline-block;
+    vertical-align: top;
     outline: none;
     background-color:#6DA927;
     color:#eee;
