@@ -22,9 +22,9 @@ function anserCorrect(){
     if (document.getElementById("questions"+currentquestion)){
       document.getElementById("mark"+currentquestion).classList.remove("hidden");
       questions=document.getElementById("questions"+currentquestion)
-          .getElementsByClassName("question");
-      for (var q of  questions){
-          q.disabled=true;
+            .getElementsByClassName("question");
+      for (var i =0;i < questions.length; i++ ){
+          questions[i].disabled=true;
       }
     }
 }
