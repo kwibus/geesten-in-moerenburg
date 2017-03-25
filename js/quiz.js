@@ -30,7 +30,7 @@ function anserCorrect(){
 }
 
 function incorrect () {
-  alert ("fout");
+  myAlert("Verkeerde antwoord!");
  document.getElementById("hint"+currentquestion).style.display="block";
 }
 

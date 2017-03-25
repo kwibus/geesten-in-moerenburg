@@ -4,7 +4,11 @@ function checkCurrentquestion () {
     if (typeof(Storage) !== "undefined") {
             lastquestion = localStorage.getItem("currentquestion");
         if (!lastquestion){
-            allowStorage = confirm("sta je toe om je voortgang locale opteslaan?");
+            // allowStorage = confirm("sta je toe om je voortgang locale opteslaan?");
+            myConfirm ("Sta je toe om je voortgang locale opteslaan?"
+                ,function (){allowStorage=true;}
+                ,function (){allowStorage=false;}
+            );
             lastquestion =   sessionStorage.getItem("currentquestion");
             if (!lastquestion){
                 lastquestion=0;
@@ -18,18 +22,19 @@ function checkCurrentquestion () {
                 lastquestion=sessionLastquestion;
                 setcurrentQuestion(lastquestion);
             }else{
-                if (confirm("wil je verdergaan waar je gebleven was")){
-                    setcurrentQuestion(lastquestion);
-                } else {
-                    deleteSaves();
-                    allowStorage=0;
-                    lastquestion=0;
-                }
+                myConfirm ("wil je verdergaan waar je gebleven was"
+                    ,function () {setcurrentQuestion(lastquestion);}
+                    , function () {
+                        deleteSaves();
+                        allowStorage=0;
+                        lastquestion=0;
+                    }
+                );
             }
         }
 
     } else {
-        alert("uw browser heeft geen onderstuining voor het opslaan van uw voortgang");
+        myWarning("uw browser heeft geen onderstuining voor het opslaan van uw voortgang");
         lastquestion= 0;
     }
     return lastquestion;

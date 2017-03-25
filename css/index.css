@@ -31,6 +31,8 @@
   height:1.2em;
   float:right;
 }
+.swal2-container{
+    z-index:10000 !important;
 }
 
 .letterbox{
