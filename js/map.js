@@ -107,7 +107,7 @@ function updatelocation(map,e) {
 function getLocationRadious(){return locationRadius;}
 
 function initMap() {
-    document.getElementById("map").style.height=(window.innerHeight - document.getElementById("myProgress").clientHeight) + "px";
+    document.getElementById("map").style.height=window.innerHeight + "px";
     var map = L.map('map');
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         attributio:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'

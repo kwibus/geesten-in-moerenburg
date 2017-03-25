@@ -31,25 +31,6 @@
   height:1.2em;
   float:right;
 }
-#myProgress{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  height: 0.5em;
-  text-align:center;
-
-  margin:0;
-  padding:0;
-}
-#myBar{
-  position:fixed;
-  background-color:#6DA927;
-  width:50%;
-  z-index:-1;
-  display:block;
-  height:0.5em;
-  margin:0;
-  padding:0;
 }
 
 .letterbox{
