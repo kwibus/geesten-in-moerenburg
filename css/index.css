@@ -30,7 +30,7 @@
   display:none;
 }
 .questionmark{
-  height:1.2em;
+  height:1.5em;
   float:right;
 }
 .swal2-container{
@@ -39,9 +39,10 @@
 
 .letterbox{
   font-weight:bold;
-  border-width: 2px;
-  width:1.2em;
-  height:1.2em;
+  border-width: 1px;
+  border-style:solid;
+  width:1.5em;
+  height:1.5em;
   text-align:center;
   background-color:#fff;
   color:#000;
