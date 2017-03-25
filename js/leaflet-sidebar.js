@@ -146,9 +146,10 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
         // hide old active contents and show new content
         for (i = this._panes.length - 1; i >= 0; i--) {
             child = this._panes[i];
-            if (child.id == id)
+            if (child.id == id){
+                child.scrollTop=0;
                 L.DomUtil.addClass(child, 'active');
-            else if (L.DomUtil.hasClass(child, 'active'))
+            }else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
         }
 
