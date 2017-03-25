@@ -113,7 +113,7 @@
         }
     },
 
-    setTarget(latlng){
+      setTarget: function (latlng){
         this._target=latlng;
         this._addEdgeMarkers();
     },
@@ -125,7 +125,7 @@
 
 L.Layer.include({
 
-    bindEdgeMarker(options){
+    bindEdgeMarker: function (options){
         if (!this._edgeMarkerHandlersAdded) {
 
             this._edgeMarker=L.edgeMarker(options);
