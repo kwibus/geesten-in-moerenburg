@@ -119,7 +119,7 @@ function initMap() {
 
     let setMarker = function (e) {
         let radius = e.accuracy / 2
-        locationMarker.bindTooltip("You are within " + Math.round (radius) + " meters from this point");
+        locationMarker.bindTooltip("je bevind zich binnen een straal van " + Math.round (radius) + " meters van dit punt");
         updatelocation(map,e);
         map.fitBounds(line.getBounds());
     }
@@ -129,7 +129,6 @@ function initMap() {
 
     map.once('locationfound', setMarker);
     locationMarker.addTo(map);
-
 
     map.on('locationerror', onLocationError);
 
@@ -141,15 +140,12 @@ function initMap() {
 
     map.locate({setView: true, watch :false});
 
-    // let edgeLayer = L.edgeMarker(goal);
-    // edgeLayer.addTo(map);
     goalMarkerPhoto.bindEdgeMarker();
     map.zoomControl.setPosition('topright');
-
     sidebar.addTo(map);
     sidebar.open("Introductie")
 
-    var latlngs = [ goal,goal];
+    var latlngs = [goal,goal];
     line = L.polyline(latlngs, {color: 'green'}).addTo(map);
     line.bindTooltip();
     line.on( 'tooltipopen', function (e) {
