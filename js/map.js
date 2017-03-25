@@ -120,7 +120,7 @@ function initMap() {
 
     let setMarker = function (e) {
         let radius = e.accuracy / 2
-        locationMarker.bindTooltip("je bevind zich binnen een straal van " + Math.round (radius) + " meters van dit punt");
+        locationMarker.bindTooltip("Je bevind zich binnen een straal van " + Math.round (radius) + " meters van dit punt");
         updatelocation(map,e);
         map.fitBounds(line.getBounds());
     }
