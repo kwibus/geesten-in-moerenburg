@@ -30,8 +30,12 @@ function anserCorrect(){
 }
 
 function incorrect () {
+
+  document.activeElement.blur();
+  var hint =document.getElementById("hint"+currentquestion);
+  hint.style.display="block";
   myAlert("Verkeerde antwoord!");
- document.getElementById("hint"+currentquestion).style.display="block";
+  hint.scrollIntoView({block:'start',behaviour:'smooth'});
 }
 
 function nextTab (){
