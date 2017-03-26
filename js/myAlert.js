@@ -3,14 +3,14 @@ function myAlert(string){
 }
 
 function myWarning(sting){
-
     swal("warning",sting ,'warning');
 }
 function myConfirm (string,whenSucces,whenFail){
 
 swal({
     title:string,
-    type:'warning',
+    type:'question',
     showCancelButton: true,
+
     }).then( whenSucces, whenFail);
 }
