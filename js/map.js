@@ -108,13 +108,11 @@ function getLocationRadious(){return locationRadius;}
 
 function initMap() {
     document.getElementById("map").style.height=window.innerHeight + "px";
-    var map = L.map('map');
+    var map = L.map('map',{attributionControl:false});
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
             }).addTo(map);
-    map.removeAttribute;
     map.setView(zomberlust,20) ;
-
     goalMarkerCircle.addTo(map);
     goalMarkerPhoto.addTo(map);
 
@@ -142,6 +140,7 @@ function initMap() {
     map.locate({setView: true, watch :false});
 
     goalMarkerPhoto.bindEdgeMarker();
+    map.attributionControl=false;
     map.zoomControl.setPosition('topright');
     sidebar.addTo(map);
     sidebar.open("Introductie")
