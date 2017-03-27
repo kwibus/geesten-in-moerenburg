@@ -88,7 +88,10 @@ function onLocationError(e) {
 
 function updatelocation(map,e) {
 
-  locationRadius=e.accuracy/2
+  console.log(e.accuracy);
+  console.log(e.latlng);
+
+  locationRadius=e.accuracy
   locationMarker.setLatLng(e.latlng);
 
   var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
@@ -124,13 +127,29 @@ function initMap() {
     goalMarkerPhoto.addTo(map);
 
     let setMarker = function (e) {
-        let radius = e.accuracy / 2
-        locationMarker.bindTooltip("Je bevind zich binnen een straal van " + Math.round (radius) + " meters van dit punt");
+        let radius = e.accuracy ;
+        locationMarker.bindTooltip();
         updatelocation(map,e);
         map.fitBounds(line.getBounds());
     }
 
-    locationMarker.on ('tooltipopen', function () { accuracyCircle=L.circle (locationMarker.getLatLng(), getLocationRadious()).addTo(map);} );
+    locationMarker.on ('tooltipopen', function () {
+
+      let latLng = locationMarker.getLatLng();
+      let accuracy = getLocationRadious();
+
+      accuracyCircle=L.circle (latLng, accuracy).addTo(map);
+      let tooltip = this
+      function updateTooltip (latLng,accuracy){
+        accuracyCircle.setLatLng(latLng);
+        accuracyCircle.setRadius(accuracy);
+        tooltip.setTooltipContent("Je bevind zich binnen een straal van " + Math.round (accuracy) + " meters van dit punt");
+      };
+      updateTooltip(latLng, accuracy);
+      map.on('locationfound',function (e){
+        updateTooltip (e.latlng,e.accuracy);
+      });
+    });
     locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
 
     map.once('locationfound', setMarker);
