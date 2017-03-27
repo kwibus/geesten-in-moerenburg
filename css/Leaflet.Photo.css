@@ -1,3 +1,9 @@
+
+.leaflet-tooltip{
+
+    width:200px;
+    white-space: normal;
+}
 /* photo/video popup */
 .leaflet-popup-photo a.leaflet-popup-close-button {
 	top: -13px;
