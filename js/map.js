@@ -174,9 +174,10 @@ function follow (map){
     map.on('locationfound', function (e) {
         updatelocation (map,e);
     });
-    map.on('locationfound',succes); // does not work now
+    map.on('locationfound',succes);
 
-    map.locate({setView: false, watch :true, timeout:5000});
+
+    map.locate({setView: false, watch :true, maximumAge: 5000,enableHighAccuracy:true});
 }
 
 function succes(e){
