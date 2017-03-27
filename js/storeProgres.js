@@ -4,7 +4,7 @@ function checkCurrentquestion () {
     if (typeof(Storage) !== "undefined") {
             lastquestion = localStorage.getItem("currentquestion");
         if (!lastquestion){
-            myConfirm ("Sta je toe om je voortgang locale opteslaan?"
+            myConfirm ("Wil jij dat we je voortgang opslaan?"
                 ,function (){allowStorage=true;}
                 ,function (){allowStorage=false;}
             );
