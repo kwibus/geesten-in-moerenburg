@@ -156,9 +156,12 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
         // remove old active highlights and set new highlight
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
-            if (child.querySelector('a').hash == '#' + id)
+            if (child.querySelector('a').hash == '#' + id){
                 L.DomUtil.addClass(child, 'active');
-            else if (L.DomUtil.hasClass(child, 'active'))
+
+                var container=child.parentElement
+                container.scrollTop = child.offsetTop - (container.clientHeight/2);
+            } else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
         }
 
