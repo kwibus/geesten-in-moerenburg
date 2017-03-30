@@ -2,34 +2,31 @@
 var zomberlust=L.latLng(51.55938707072835,5.11301726102829);
 var sidebar=L.control.sidebar('sidebar');
 
+function Goal (name , latLng, image){
+  return {
+    name: name ,
+    latLng: latLng,
+    image: image,
+  };
+}
+
 var goalN = 0;
 var goals = [
-    [51.558567,5.122133],
-    [51.55655 ,5.124533],
-    [51.555333,5.1225],
-    [51.5557  ,5.1212],
-    [51.554233,5.120233],
-    [51.553717,5.115183],
-    [51.55535 ,5.11645],
-    [51.5565  ,5.114183],
-    [51.557067,5.117467],
+    Goal ("Buuder",[51.558567,5.122133], 'images/halte1.jpg'),
+    Goal ("",[51.55655 ,5.124533], 'images/halte2.jpg'),
+    Goal ("",[51.555333,5.1225],   'images/halte3.jpg'),
+    Goal ("",[51.5557  ,5.1212],   'images/halte4.jpg'),
+    Goal ("",[51.554233,5.120233], 'images/halte5.jpg'),
+    Goal ("",[51.553717,5.115183], 'images/halte6.jpg'),
+    Goal ("",[51.55535 ,5.11645],  'images/halte7.jpg'),
+    Goal ("",[51.5565  ,5.114183], 'images/halte8.jpg'),
+    Goal ("",[51.557067,5.117467], 'images/halte9.jpg'),
     ];
 
-var images = [
-    'images/halte1.jpg',
-    'images/halte2.jpg',
-    'images/halte3.jpg',
-    'images/halte4.jpg',
-    'images/halte5.jpg',
-    'images/halte6.jpg',
-    'images/halte7.jpg',
-    'images/halte8.jpg'
-];
-
 var goal=goals[goalN];
-var goalMarkerCircle = L.circle(goal,goalRadious);
-var goalMarkerPhoto= L.marker(goal);
-setPictureMarker(goalMarkerPhoto,images[0]);
+var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
+var goalMarkerPhoto= L.marker(goal.latLng);
+setPictureMarker(goalMarkerPhoto,goal.image);
 
 var locationRadius=0;
 var curentlocation = undefined;
@@ -46,17 +43,15 @@ function highlightGoal() {
 }
 
 function nextgoal(){
-   setgoal (++goalN);
+   setgoal (goals[++goalN]);
 }
 
-function setgoal(n){
-    goalN=n
-    goal=goals[n];
-    line.getLatLngs()[2] = goal;
+function setgoal(goal){
+    line.getLatLngs()[2] = goal.latLng;
 
-    goalMarkerCircle.setLatLng(goal);
-    goalMarkerPhoto.setLatLng(goal);
-    setPictureMarker(goalMarkerPhoto,images[goalN])
+    goalMarkerCircle.setLatLng(goal.latLng);
+    goalMarkerPhoto.setLatLng(goal.latLng);
+    setPictureMarker(goalMarkerPhoto, goal)
 }
 
 function setPictureMarker(marker,photo){
@@ -64,16 +59,16 @@ function setPictureMarker(marker,photo){
     marker.closePopup();
     marker.setIcon  (
         L.icon({
-              iconUrl:photo,
+              iconUrl:goal.image,
 
               iconSize:     [40, 40],
               iconAnchor: [0, 40],
               className: 'leaflet-popup-photo',
                 })
-        )
+        );
 
     marker.bindPopup(
-        "<figure > <img src="+photo +"> <figcaption>bunder</figcaption> </figure>"
+        "<figure > <img src="+goal.image+"> <figcaption>" + goal.name + "</figcaption> </figure>"
         ,{className: 'leaflet-popup-photo',
           minWidth: 200 }
         );
@@ -103,7 +98,7 @@ function updatelocation(map,e) {
   }
 
   if (typeof(goal) !== 'undefined') {
-      line.setLatLngs([e.latlng,goal]);
+      line.setLatLngs([e.latlng,goal.latLng]);
   }
 }
 
@@ -171,7 +166,7 @@ function initMap() {
     sidebar.addTo(map);
     sidebar.open("Introductie")
 
-    var latlngs = [goal,goal];
+    var latlngs = [goal.latLng,goal.latLng];
     line = L.polyline(latlngs, {color: 'green'}).addTo(map);
     line.bindTooltip();
     line.on( 'tooltipopen', function (e) {
@@ -202,7 +197,7 @@ function follow (map){
 function succes(e){
 
   if (typeof(goal) !== 'undefined') {
-      if (e.latlng.distanceTo(goal) < goalRadious) {
+      if (e.latlng.distanceTo(goal.latLng) < goalRadious) {
       goal=undefined;
         if (navigator.vibrate) {
              navigator.vibrate(1000);
