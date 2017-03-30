@@ -36,6 +36,8 @@ var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
 
+var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
+
 function highlightGoal() {
   sidebar.close();
   map.fitBounds(line.getBounds());
@@ -86,7 +88,6 @@ function updatelocation(map,e) {
   locationRadius=e.accuracy;
   locationMarker.setLatLng(e.latlng);
 
-  var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
   if ( bounds.contains(e.latlng) ){
     map.setMaxBounds(bounds);
 
@@ -110,11 +111,17 @@ function initMap() {
       document.getElementById("map").style.height=window.innerHeight + "px";
       map.invalidateSize();
     };
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-            }).addTo(map);
+    var layer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
+        useCache: true,
+        crossOrigin: true
+    })
 
-    map.setView(zomberlust,20) ;
+    layer.addTo(map);
+    layer._map=map;
+    layer.seed (bounds,15,18);
+
+    map.setView(zomberlust,17) ;
     goalMarkerCircle.addTo(map);
     goalMarkerPhoto.addTo(map);
 
