@@ -83,10 +83,7 @@ function onLocationError(e) {
 
 function updatelocation(map,e) {
 
-  console.log(e.accuracy);
-  console.log(e.latlng);
-
-  locationRadius=e.accuracy
+  locationRadius=e.accuracy;
   locationMarker.setLatLng(e.latlng);
 
   var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
