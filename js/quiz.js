@@ -1,13 +1,14 @@
 
 currentquestion=checkCurrentquestion();
-
+setcurrentQuestion(currentquestion);
 function setcurrentQuestion(n){
+
     currentquestion=0;
     while (currentquestion < n){
         nextTab();
-          anserCorrect();
-        nextgoal();
+        anserCorrect();
     }
+    setgoal(goals[n]);
 }
 
 function correct(){
@@ -44,9 +45,10 @@ function nextTab (){
     sidebar.open("stop"+currentquestion);
 }
 
-rebuscorect=0
-rebusAnser="hetslotvanhetspel"
+rebuscorect=0;
+rebusAnser="hetslotvanhetspel";
 function checkKey (id,n){
+    id.value=id.value.toLowerCase();
     if (id.value===rebusAnser.charAt(n)){
         id.disabled=true;
         document.getElementById("markWrong"+n).classList.add("hidden");

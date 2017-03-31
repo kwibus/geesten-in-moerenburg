@@ -11,18 +11,15 @@ function checkCurrentquestion () {
             lastquestion =   sessionStorage.getItem("currentquestion");
             if (!lastquestion){
                 lastquestion=0;
-            }else{
-                setcurrentQuestion(lastquestion);
             }
         }else {
 
             sessionLastquestion =  sessionStorage.getItem("currentquestion");
             if (sessionLastquestion){
                 lastquestion=sessionLastquestion;
-                setcurrentQuestion(lastquestion);
             }else{
                 myConfirm ("wil je verdergaan waar je gebleven was"
-                    ,function () {setcurrentQuestion(lastquestion);}
+                    ,function () {}
                     , function () {
                         deleteSaves();
                         allowStorage=0;

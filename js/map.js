@@ -21,6 +21,7 @@ var goals = [
     Goal ("",[51.55535 ,5.11645],  'images/halte7.jpg'),
     Goal ("",[51.5565  ,5.114183], 'images/halte8.jpg'),
     Goal ("",[51.557067,5.117467], 'images/halte9.jpg'),
+    Goal ("",[51.557067,5.117467], 'images/halte9.jpg'),
     ];
 
 var goal=goals[goalN];
