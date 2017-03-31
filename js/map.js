@@ -12,16 +12,16 @@ function Goal (name , latLng, image){
 
 var goalN = 0;
 var goals = [
-    Goal ("Buuder",[51.558567,5.122133], 'images/halte1.jpg'),
-    Goal ("",[51.55655 ,5.124533], 'images/halte2.jpg'),
-    Goal ("",[51.555333,5.1225],   'images/halte3.jpg'),
-    Goal ("",[51.5557  ,5.1212],   'images/halte4.jpg'),
-    Goal ("",[51.554233,5.120233], 'images/halte5.jpg'),
-    Goal ("",[51.553717,5.115183], 'images/halte6.jpg'),
-    Goal ("",[51.55535 ,5.11645],  'images/halte7.jpg'),
-    Goal ("",[51.5565  ,5.114183], 'images/halte8.jpg'),
-    Goal ("",[51.557067,5.117467], 'images/halte9.jpg'),
-    Goal ("",[51.557067,5.117467], 'images/halte9.jpg'),
+    Goal ("Langs de oever van de Korvelse Waterloop",[51.558567,5.122133], 'images/halte1.jpg'),
+    Goal ("De Buunder/ het Grollegat",[51.55655 ,5.124533], 'images/halte2.jpg'),
+    Goal ("Bij het bruggetje over de Leij",[51.555333,5.1225],   'images/halte3.jpg'),
+    Goal ("Aan de Kommerstraat",[51.5557  ,5.1212],   'images/halte4.jpg'),
+    Goal ("Langs de Meijerijbaan",[51.554233,5.120233], 'images/halte5.jpg'),
+    Goal ("Aan de Lange Jan",[51.553717,5.115183], 'images/halte6.jpg'),
+    Goal ("Het Water Paviljoen",[51.55535 ,5.11645],  'images/halte7.jpg'),
+    Goal ("Toegang naar het Helofytenfilter",[51.5565  ,5.114183], 'images/halte8.jpg'),
+    Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
+    Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
     ];
 
 var goal=goals[goalN];
