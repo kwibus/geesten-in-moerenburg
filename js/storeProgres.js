@@ -4,11 +4,12 @@ function checkCurrentquestion () {
     if (typeof(Storage) !== "undefined") {
             lastquestion = localStorage.getItem("currentquestion");
         if (!lastquestion){
-            myConfirm ("Wil jij dat we je voortgang opslaan?"
-                ,function (){allowStorage=true;}
-                ,function (){allowStorage=false;}
-            );
-            lastquestion =   sessionStorage.getItem("currentquestion");
+            // myConfirm ("Wil jij dat we je voortgang opslaan?"
+            //     ,function (){allowStorage=true;}
+            //     ,function (){allowStorage=false;}
+            // );
+            allowStorage=true:
+            lastquestion = sessionStorage.getItem("currentquestion");
             if (!lastquestion){
                 lastquestion=0;
             }
