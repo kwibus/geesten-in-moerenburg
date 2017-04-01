@@ -27,7 +27,7 @@ var goals = [
 var goal=goals[goalN];
 var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
 var goalMarkerPhoto= L.marker(goal.latLng);
-setPictureMarker(goalMarkerPhoto,goal.image);
+setPictureMarker(goalMarkerPhoto,goal);
 
 var locationRadius=0;
 var curentlocation = undefined;
@@ -49,7 +49,8 @@ function nextgoal(){
    setgoal (goals[++goalN]);
 }
 
-function setgoal(goal){
+function setgoal(newgoal){
+    goal = newgoal;
     line.getLatLngs()[2] = goal.latLng;
 
     goalMarkerCircle.setLatLng(goal.latLng);
@@ -57,7 +58,7 @@ function setgoal(goal){
     setPictureMarker(goalMarkerPhoto, goal)
 }
 
-function setPictureMarker(marker,photo){
+function setPictureMarker(marker,goal){
 
     marker.closePopup();
     marker.setIcon  (
