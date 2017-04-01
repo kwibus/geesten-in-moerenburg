@@ -1,6 +1,6 @@
-var allowStorage = undefined
+var allowStorage = undefined;
 function checkCurrentquestion () {
-    var lastquestion=undefined
+    var lastquestion=undefined;
     if (typeof(Storage) !== "undefined") {
             lastquestion = localStorage.getItem("currentquestion");
         if (!lastquestion){
@@ -8,7 +8,7 @@ function checkCurrentquestion () {
             //     ,function (){allowStorage=true;}
             //     ,function (){allowStorage=false;}
             // );
-            allowStorage=true:
+            allowStorage=true;
             lastquestion = sessionStorage.getItem("currentquestion");
             if (!lastquestion){
                 lastquestion=0;
@@ -21,7 +21,7 @@ function checkCurrentquestion () {
             }else{
                 myConfirm ("wil je verdergaan waar je gebleven was"
                     ,function () {}
-                    , function () {
+                    ,function () {
                         deleteSaves();
                         allowStorage=0;
                         lastquestion=0;
