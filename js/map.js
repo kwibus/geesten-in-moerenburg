@@ -43,6 +43,7 @@ function highlightGoal() {
   sidebar.close();
   map.fitBounds(line.getBounds());
   goalMarkerPhoto.openPopup();
+  locationMarker.openTooltip();
 }
 
 function nextgoal(){
