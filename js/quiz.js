@@ -7,6 +7,7 @@ function setcurrentQuestion(n){
         anserCorrect();
     }
     currentquestion=n;
+    sidebar.close();
 }
 
 function correct(){
