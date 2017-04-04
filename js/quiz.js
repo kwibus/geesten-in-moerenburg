@@ -1,6 +1,4 @@
-
-currentquestion=checkCurrentquestion();
-setcurrentQuestion(currentquestion);
+var currentquestion=0;
 function setcurrentQuestion(n){
 
     currentquestion=0;
@@ -8,7 +6,7 @@ function setcurrentQuestion(n){
         nextTab();
         anserCorrect();
     }
-    setgoal(goals[n]);
+    currentquestion=n;
 }
 
 function correct(){

@@ -51,7 +51,7 @@ function nextgoal(){
 
 function setgoal(newgoal){
     goal = newgoal;
-    line.getLatLngs()[2] = goal.latLng;
+    line.getLatLngs()[1] = goal.latLng;
 
     goalMarkerCircle.setLatLng(goal.latLng);
     goalMarkerPhoto.setLatLng(goal.latLng);
@@ -104,35 +104,27 @@ function updatelocation(map,e) {
 
 function getLocationRadious(){return locationRadius;}
 
-function initMap() {
+function initGoal(map){
 
-    document.getElementById("map").style.height=window.innerHeight + "px";
-    var map = L.map('map',{attributionControl:false});
-
-    document.body.onresize = function (){
-      document.getElementById("map").style.height=window.innerHeight + "px";
-      map.invalidateSize();
-    };
-    var layer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
-        useCache: true,
-        crossOrigin: true
-    })
-
-    layer.addTo(map);
-    layer._map=map;
-    layer.seed (bounds,15,18);
-
-    map.setView(zomberlust,17) ;
     goalMarkerCircle.addTo(map);
     goalMarkerPhoto.addTo(map);
+    goalMarkerPhoto.bindEdgeMarker();
+
+}
+
+function initLocation(){
 
     let setMarker = function (e) {
-        let radius = e.accuracy ;
         locationMarker.bindTooltip();
         updatelocation(map,e);
         map.fitBounds(line.getBounds());
     }
+
+    map.once('locationfound', setMarker);
+
+    map.locate({setView: true, watch :false});
+    locationMarker.addTo(map);
+
 
     locationMarker.on ('tooltipopen', function () {
 
@@ -152,9 +144,40 @@ function initMap() {
       });
     });
     locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
+}
 
-    map.once('locationfound', setMarker);
-    locationMarker.addTo(map);
+function initLine(map){
+    var latlngs = [goal.latLng,goal.latLng];
+    line = L.polyline(latlngs, {color: 'green'}).addTo(map);
+    line.on( 'click', (function (e) {
+        map.openPopup(
+            (Math.round(locationMarker.getLatLng().distanceTo(goalMarkerCircle.getLatLng())) + "m")
+           , e.latlng
+        );
+    }));
+}
+
+function initMap() {
+
+    document.getElementById("map").style.height=window.innerHeight + "px";
+    var map = L.map('map',{attributionControl:false});
+
+    document.body.onresize = function (){
+      document.getElementById("map").style.height=window.innerHeight + "px";
+      map.invalidateSize();
+    };
+    var layer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
+        useCache: true,
+        // useOnlyCache: true,
+        crossOrigin: true
+    })
+
+    layer.addTo(map);
+    layer._map=map;
+    layer.seed (bounds,16,18);
+
+    map.setView(zomberlust,16) ;
 
     map.on('locationerror', onLocationError);
 
@@ -164,20 +187,12 @@ function initMap() {
         updateWhenIdle:false
       }).addTo(map);
 
-    map.locate({setView: true, watch :false});
 
-    goalMarkerPhoto.bindEdgeMarker();
     map.attributionControl=false;
     map.zoomControl.setPosition('topright');
     sidebar.addTo(map);
     sidebar.open("Introductie")
 
-    var latlngs = [goal.latLng,goal.latLng];
-    line = L.polyline(latlngs, {color: 'green'}).addTo(map);
-    line.bindTooltip();
-    line.on( 'tooltipopen', function (e) {
-        e.tooltip.setContent(Math.round(locationMarker.getLatLng().distanceTo(goalMarkerCircle.getLatLng())) + "m");
-        });
 
     L.easyButton( {
         position: 'topright',
@@ -218,4 +233,13 @@ function succes(e){
 }
 
 var map = initMap();
+initLine(map);
+initGoal(map);
+initLocation(map);
+
+var goalN =checkCurrentquestion();
+if (goalN !== 0){
+    setgoal(goals[goalN]);
+}
+setcurrentQuestion(goalN);
 follow(map);

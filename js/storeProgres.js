@@ -23,8 +23,8 @@ function checkCurrentquestion () {
                     ,function () {}
                     ,function () {
                         deleteSaves();
-                        allowStorage=0;
-                        lastquestion=0;
+                        location.reload(true);
+
                     }
                 );
             }
