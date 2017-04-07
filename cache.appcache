@@ -45,6 +45,7 @@ http://192.168.1.51:8000/fonts/fontawesome-webfont.ttf?v=4.7.0
 ./js/quiz.js
 ./js/leaflet.rotatedMarker.js
 ./js/Leaflet.EdgeMarker.js
+./js/L.TileLayer.PouchDBCached.js
 ./js/myAlert.js
 ./js/map.js
 ./js/storeProgres.js
