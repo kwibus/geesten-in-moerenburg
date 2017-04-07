@@ -74,8 +74,7 @@ function setPictureMarker(marker,goal){
 
     marker.bindPopup(
         "<figure > <img src="+goal.image+"> <figcaption>" + goal.name + "</figcaption> </figure>"
-        ,{className: 'leaflet-popup-photo',
-          minWidth: 200 }
+        ,{className: 'leaflet-popup-photo'}
         );
 }
 

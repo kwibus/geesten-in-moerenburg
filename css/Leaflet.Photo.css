@@ -25,6 +25,7 @@
 	border-radius: 4px;
 }
 .leaflet-popup-photo .leaflet-popup-content {
+        width:150px;
 	margin: 0;
 }
 .leaflet-popup-photo .leaflet-popup-tip {
