@@ -5,7 +5,7 @@ var sidebar=L.control.sidebar('sidebar');
 function Goal (name , latLng, image){
   return {
     name: name ,
-    latLng: latLng,
+    latLng: L.latLng (latLng),
     image: image,
   };
 }
@@ -23,6 +23,7 @@ var goals = [
     Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
     Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
     ];
+
 
 var goal=goals[goalN];
 var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
@@ -222,6 +223,13 @@ function succes(e){
       goal=undefined;
         if (navigator.vibrate) {
              navigator.vibrate(1000);
+        }
+        if (document.getElementById("next"+currentquestion)){
+          let nextLink = document.getElementById("next"+currentquestion);
+          nextLink.removeAttribute("href");
+          nextLink.removeAttribute("onClick");
+          console.log(nextLink);
+
         }
         nextTab();
         trySave();
