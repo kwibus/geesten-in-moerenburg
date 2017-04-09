@@ -8,7 +8,7 @@ L.TileLayer.addInitHook(function() {
 		return;
 	}
 	if (this.options.dbOptions){
-	this._db = new PouchDB('offline-tiles',this.options.dbOptions);
+		this._db = new PouchDB('offline-tiles',this.options.dbOptions);
 	}else{
 		this._db = new PouchDB('offline-tiles');
 	}

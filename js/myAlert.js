@@ -2,8 +2,8 @@ function myAlert(string){
     swal('Oops...', string, 'error');
 }
 
-function myWarning(sting){
-    swal("warning",sting ,'warning');
+function myWarning(string){
+    swal("warning",string ,'warning');
 }
 function myConfirm (string,whenSucces,whenFail){
   if (L.Browser.ielt9 || L.Browser.msPointer){

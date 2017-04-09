@@ -1,4 +1,4 @@
-var allowStorage = undefined;
+var allowStorage = true;
 function checkCurrentquestion () {
     var lastquestion=undefined;
     if (typeof(Storage) !== "undefined") {
@@ -8,7 +8,6 @@ function checkCurrentquestion () {
             //     ,function (){allowStorage=true;}
             //     ,function (){allowStorage=false;}
             // );
-            allowStorage=true;
             lastquestion = sessionStorage.getItem("currentquestion");
             if (!lastquestion){
                 lastquestion=0;

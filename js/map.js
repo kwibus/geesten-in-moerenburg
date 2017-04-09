@@ -38,7 +38,9 @@ var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
 
-var bounds =L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
+var lastUpdate = new Date();
+var lastErrorTime = new Date();
+var bounds = L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
 
 function highlightGoal() {
   sidebar.close();
@@ -53,7 +55,7 @@ function nextgoal(){
 
 function setgoal(newgoal){
     goal = newgoal;
-    line.getLatLngs()[1] = goal.latLng;
+    line.setLatLngs([locationMarker.getLatLng(),goal.latLng]);
 
     goalMarkerCircle.setLatLng(goal.latLng);
     goalMarkerPhoto.setLatLng(goal.latLng);
@@ -79,15 +81,33 @@ function setPictureMarker(marker,goal){
         );
 }
 
-function onLocationError(e) {
+function onLocationError(error) {
+  console.log(error.message);
+  if (error.code===3 ){
+    // error.code 3 = timout
+    // this can happen because:
+    //      gps is off
+    //      page was on standby
+    //      gps was slow, happens ones in will
+    // if (time.getTime()- lastErrorTime.getTime()>= 7000){
 
-    // alert(e.message);
-    console.log(e.message);
+    var date = new Date();
+    var time=date.getTime();
+    if (lastErrorTime-lastUpdate > 20000){
+      myWarning ("gps staat uit");
+      lastErrorTime=time;
+    }
+    lastErrorTime=time;
+  }else{
+    myWarning(error.message);
+  }
+
     // stopLocate();
 }
 
 function updatelocation(map,e) {
-
+  var date=new Date();
+  lastUpdate=date.getTime();
   locationRadius=e.accuracy;
   locationMarker.setLatLng(e.latlng);
 
@@ -123,7 +143,7 @@ function initLocation(){
 
     map.once('locationfound', setMarker);
 
-    map.locate({setView: true, watch :false});
+    map.locate({setView: false, watch :false});
     locationMarker.addTo(map);
 
 
@@ -214,8 +234,7 @@ function follow (map){
     });
     map.on('locationfound',succes);
 
-
-    map.locate({setView: false, watch :true, maximumAge: 5000,enableHighAccuracy:true});
+    map.locate({setView: false, watch :true, maximumAge: 5000, enableHighAccuracy:true});
 }
 
 function succes(e){
@@ -230,7 +249,6 @@ function succes(e){
           let nextLink = document.getElementById("next"+currentquestion);
           nextLink.removeAttribute("href");
           nextLink.removeAttribute("onClick");
-          console.log(nextLink);
 
         }
         nextTab();
@@ -246,7 +264,6 @@ var map = initMap();
 initLine(map);
 initGoal(map);
 initLocation(map);
-
 var goalN =checkCurrentquestion();
 if (goalN !== 0){
     setgoal(goals[goalN]);
