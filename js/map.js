@@ -1,7 +1,7 @@
 'use strict';
 var zomberlust=L.latLng(51.55938707072835,5.11301726102829);
 var sidebar=L.control.sidebar('sidebar');
-
+var foundGpsError=false;
 function Goal (name , latLng, image){
   return {
     name: name ,
@@ -24,15 +24,14 @@ var goals = [
     Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
     ];
 
-
 var goal=goals[goalN];
 var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
 var goalMarkerPhoto= L.marker(goal.latLng);
 setPictureMarker(goalMarkerPhoto,goal);
 
-var locationRadius=0;
-var curentlocation = undefined;
-var locationMarker = L.marker([90,0]);
+var locationRadius = 0;
+var dumylocation = L.latLng(90,0);
+var locationMarker = L.marker(dumylocation);
 
 var line = undefined;
 var goalRadious = 10;
@@ -95,10 +94,12 @@ function onLocationError(error) {
     var time=date.getTime();
     if (lastErrorTime-lastUpdate > 20000){
       myWarning ("gps staat uit");
-      lastErrorTime=time;
+      lastErrorTime = time;
+      foundGpsError = true;
     }
     lastErrorTime=time;
   }else{
+    foundGpsError = true;
     myWarning(error.message);
   }
 
@@ -259,7 +260,18 @@ function succes(e){
       }
   }
 }
+function checkGpsSucces(){
 
+ if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
+   myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opniew ");
+ }else if (locationRadius > 30) {
+    if (L.Browser.android){
+      myWarning ("GPS te onnouwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
+    }else{
+      myWarning ("Gps van dit apparaat is te onnouwkeurig voor dit spel.")
+    }
+ }
+}
 var map = initMap();
 initLine(map);
 initGoal(map);
@@ -269,4 +281,7 @@ if (goalN !== 0){
   setgoal(goals[goalN]);
   setcurrentQuestion(goalN);
 }
+
 follow(map);
+
+setTimeout( checkGpsSucces, 10000);
