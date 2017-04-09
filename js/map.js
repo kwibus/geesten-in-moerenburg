@@ -266,7 +266,7 @@ initGoal(map);
 initLocation(map);
 var goalN =checkCurrentquestion();
 if (goalN !== 0){
-    setgoal(goals[goalN]);
+  setgoal(goals[goalN]);
+  setcurrentQuestion(goalN);
 }
-setcurrentQuestion(goalN);
 follow(map);
