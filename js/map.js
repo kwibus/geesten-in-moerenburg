@@ -92,7 +92,7 @@ function onLocationError(error) {
 
     var date = new Date();
     var time=date.getTime();
-    if (lastErrorTime-lastUpdate > 20000){
+    if (lastErrorTime - lastUpdate > 40000){
       myWarning ("gps staat uit");
       lastErrorTime = time;
       foundGpsError = true;
@@ -144,7 +144,7 @@ function initLocation(){
 
     map.once('locationfound', setMarker);
 
-    map.locate({setView: false, watch :false});
+    map.locate({setView: true, watch :false});
     locationMarker.addTo(map);
 
 
@@ -284,4 +284,4 @@ if (goalN !== 0){
 
 follow(map);
 
-setTimeout( checkGpsSucces, 10000);
+setTimeout( checkGpsSucces, 15000);
