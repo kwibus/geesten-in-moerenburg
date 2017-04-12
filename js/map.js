@@ -53,12 +53,12 @@ function nextgoal(){
 }
 
 function setgoal(newgoal){
-    goal = newgoal;
-    line.setLatLngs([locationMarker.getLatLng(),goal.latLng]);
+  goal = newgoal;
+  line.setLatLngs([locationMarker.getLatLng(),goal.latLng]);
 
-    goalMarkerCircle.setLatLng(goal.latLng);
-    goalMarkerPhoto.setLatLng(goal.latLng);
-    setPictureMarker(goalMarkerPhoto, goal)
+  goalMarkerCircle.setLatLng(goal.latLng);
+  goalMarkerPhoto.setLatLng(goal.latLng);
+  setPictureMarker(goalMarkerPhoto, goal)
 }
 
 function setPictureMarker(marker,goal){
@@ -134,38 +134,40 @@ function initGoal(map){
 
 }
 
-function initLocation(){
+function initLocation(map){
 
-    let setMarker = function (e) {
-        locationMarker.bindTooltip();
-        updatelocation(map,e);
-        map.fitBounds(line.getBounds());
-    }
+  map.spin(true);
+  var setMarker = function (e) {
+    locationMarker.bindTooltip();
+    updatelocation(map,e);
+    map.fitBounds(line.getBounds());
+    map.spin(false);
+  }
 
-    map.once('locationfound', setMarker);
+  map.once('locationfound', setMarker);
 
-    map.locate({setView: true, watch :false});
-    locationMarker.addTo(map);
+  map.locate({setView: true, watch :false});
+  locationMarker.addTo(map);
 
 
-    locationMarker.on ('tooltipopen', function () {
+  locationMarker.on ('tooltipopen', function () {
 
-      let latLng = locationMarker.getLatLng();
-      let accuracy = getLocationRadious();
+    var latLng = locationMarker.getLatLng();
+    var accuracy = getLocationRadious();
 
-      accuracyCircle=L.circle (latLng, accuracy).addTo(map);
-      let tooltip = this
-      function updateTooltip (latLng,accuracy){
-        accuracyCircle.setLatLng(latLng);
-        accuracyCircle.setRadius(accuracy);
-        tooltip.setTooltipContent("Je bevind zich binnen een straal van " + Math.round (accuracy) + " meters van dit punt");
-      };
-      updateTooltip(latLng, accuracy);
-      map.on('locationfound',function (e){
-        updateTooltip (e.latlng,e.accuracy);
-      });
+    accuracyCircle=L.circle (latLng, accuracy).addTo(map);
+    var tooltip = this
+    function updateTooltip (latLng,accuracy){
+      accuracyCircle.setLatLng(latLng);
+      accuracyCircle.setRadius(accuracy);
+      tooltip.setTooltipContent("Je bevind zich binnen een straal van " + Math.round (accuracy) + " meters van dit punt");
+    };
+    updateTooltip(latLng, accuracy);
+    map.on('locationfound',function (e){
+      updateTooltip (e.latlng,e.accuracy);
     });
-    locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
+  });
+  locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
 }
 
 function initLine(map){
@@ -192,7 +194,7 @@ function initMap() {
         attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
         useCache: true,
         // useOnlyCache: true,
-        crossOrigin: true,
+        crossOrigin: false,
         dbOptions:{size:40} ,
 
     })
@@ -247,7 +249,7 @@ function succes(e){
              navigator.vibrate(1000);
         }
         if (document.getElementById("next"+currentquestion)){
-          let nextLink = document.getElementById("next"+currentquestion);
+          var nextLink = document.getElementById("next"+currentquestion);
           nextLink.removeAttribute("href");
           nextLink.removeAttribute("onClick");
 
