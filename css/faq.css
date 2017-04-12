@@ -1,0 +1,99 @@
+    /*Add some spacing*/
+.faq-section{
+    margin: 15px 0;
+    position: relative;
+}
+
+/*Hide the paragraphs*/
+.faq-section p{
+  margin-left:10px;
+  display: none;
+}
+
+/*Hide the checkboxes */
+.faq-section input{
+
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    display: none\9; /* IE8 and below */
+    margin: 0;
+    width: 1px;
+    height: 1px;
+}
+
+/*Show only the clipped intro */
+/* .faq-section label+p{ */
+/*     display: block; */
+/*     color: #999; */
+/*     font-size: .85em; */
+/*     transition: all .15s ease-out; */
+    /* Clipping text */
+/*     text-overflow: ellipsis; */
+/*     white-space: nowrap; */
+/*     overflow: hidden; */
+/* } */
+@keyframes slideDown{
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/*If the checkbox is checked, show all paragraphs*/
+.faq-section input[type=checkbox]:checked~p{
+    display: block;
+    color: #000;
+    font-size: 1em;
+    /* restore clipping defaults */
+    animation-name: slideDown;
+    animation-duration: 0.4s;
+    overflow: visible;
+}
+
+/*Style the label*/
+.faq-section label{
+    font-size: 1.2em;
+    background-color:#6DA927;
+    box-shadow: 4px 4px 5px grey;
+    color:#fff;
+    display: block;
+    position: relative;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+/*Remove text selection when toggle-ing*/
+.faq-section label::selection{
+    background: none;
+}
+
+label:hover{
+    background: #A1B327 ;
+
+    transform: translateY(2px);
+}
+
+
+/*Label's arrow - default state */
+.faq-section label::before{
+    content: '';
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    margin-top: -6px;
+    border: 6px solid transparent;
+    border-left-color: inherit;
+}
+
+/*Update the right arrow*/
+.faq-section input[type=checkbox]:checked~label::before{
+    border: 6px solid transparent;
+    border-top-color: inherit;
+    margin-top: -3px;
+    right: 10px;
+}

@@ -46,7 +46,7 @@
 
     right: 0; }
   .sidebar-tabs> ul:first-child{
-    height: calc( 100% - 80px);
+    height: calc( 100% - 120px);
   }
   .sidebar-tabs, .sidebar-tabs > ul {
     overflow-y:auto;

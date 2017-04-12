@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# za  1 apr 2017 12:57:37
+# wo 12 apr 2017 23:46:44
 CACHE:
 https://unpkg.com/leaflet@1.0.3/dist/leaflet.css
 https://unpkg.com/leaflet@1.0.3/dist/leaflet.js
@@ -53,6 +53,7 @@ http://192.168.1.51:8000/fonts/fontawesome-webfont.ttf?v=4.7.0
 ./css/index.css
 ./css/font-awesome.min.css
 ./css/leaflet-sidebar.css
+./css/faq.css
 ./spel.html
 
 NETWORK:
