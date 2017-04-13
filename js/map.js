@@ -201,6 +201,10 @@ function initMap() {
     })
 
     layer.addTo(map);
+    layer.on('tilecacheerror',function(ev){
+      console.log('Cache error: ', ev.tile, ev.error);
+    });
+
     layer._map=map;
     layer.seed (bounds,16,18);
 
