@@ -194,6 +194,7 @@ function initMap() {
         attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
         useCache: true,
         // useOnlyCache: true,
+        cacheMaxAge:60*60*24*10,
         crossOrigin: false,
         dbOptions:{size:40} ,
 
