@@ -222,7 +222,7 @@ function initMap() {
     map.attributionControl=false;
     map.zoomControl.setPosition('topright');
     sidebar.addTo(map);
-    sidebar.open("Introductie")
+    // sidebar.open("Introductie") // its alreay manual opend but for consisent and history logic
 
 
     L.easyButton( {

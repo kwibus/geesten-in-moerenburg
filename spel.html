@@ -2,7 +2,6 @@
 <html manifest="cache.appcache">
   <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="images/ivn.ico" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- <meta name="theme&#45;color" content="#6DA927"> -->
     <!-- <meta name="msapplication&#45;navbutton&#45;color" content="#6DA927"> -->
@@ -11,31 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <link rel="stylesheet" href="css/index.css" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
-    <script src="js/leaflet.spin.min.js"></script>
-    <script src="js/leaflet.rotatedMarker.js"></script>
-    <script src="js/Leaflet.EdgeMarker.js"></script>
     <link rel="stylesheet" href="css/leaflet-sidebar.css" />
-
-    <link rel="stylesheet" href="css/Leaflet.Photo.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
-    <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
-    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.js"></script>
-    <script src="https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js"></script>
-    <script src="js/L.TileLayer.PouchDBCached.js"></script>
-    <!-- <script src="https://unpkg.com/leaflet.tilelayer.pouchdbcached@latest/L.TileLayer.PouchDBCached.js"></script> -->
-
-    <script src="js/myAlert.js"></script>
-
     <title>Geesten in Moerenburg</title>
 
     <style>
@@ -48,7 +23,7 @@
   </head>
   <body>
 
-    <div id="sidebar" class="sidebar collapsed">
+    <div id="sidebar" class=" sidebar-left sidebar">
       <div class="sidebar-tabs">
         <ul role="tablist">
           <li><a href="#Introductie" role="tab"><i class="fa fa-bars"></i></a></li>
@@ -72,7 +47,7 @@
       </div>
 
       <div class="sidebar-content">
-        <div class="sidebar-pane" id="Introductie">
+        <div class="active sidebar-pane" id="Introductie">
           <h1 class="sidebar-header">
             Introductie van de speurtocht:
             <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
@@ -730,11 +705,40 @@
         </div>
       </div>
     </div>
+
+    <link rel="shortcut icon" href="images/ivn.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+
+
+    <link rel="stylesheet" href="css/Leaflet.Photo.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+
+    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.css">
     <div id="map" style="width:100%;height: 100vh;position:fixed; top:0"></div>
+
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+
+    <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+
+    <script src="js/leaflet.spin.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/Leaflet.EdgeMarker.js"></script>
     <script src="js/leaflet-sidebar.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js"></script>
+
+    <script src="js/L.TileLayer.PouchDBCached.js"></script>
+    <!-- <sript src="https://unpkg.com/leaflet.tilelayer.pouchdbcached@latest/L.TileLayer.PouchDBCached.js"></script> -->
+
+    <script src="js/myAlert.js"></script>
+
     <script src="js/storeProgres.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/map.js"> </script>
-
   </body>
 </html>

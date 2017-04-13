@@ -161,6 +161,7 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 
                 var container=child.parentElement
                 container.scrollTop = child.offsetTop - (container.clientHeight/2);
+
             } else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
         }
