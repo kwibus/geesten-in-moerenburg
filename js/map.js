@@ -160,7 +160,7 @@ function initLocation(map){
     function updateTooltip (latLng,accuracy){
       accuracyCircle.setLatLng(latLng);
       accuracyCircle.setRadius(accuracy);
-      tooltip.setTooltipContent("Je bevind zich binnen een straal van " + Math.round (accuracy) + " meters van dit punt");
+      tooltip.setTooltipContent("Je bevindt je zbinnen een straal van " + Math.round (accuracy) + " meter van dit punt.");
     };
     updateTooltip(latLng, accuracy);
     map.on('locationfound',function (e){
@@ -195,7 +195,7 @@ function initMap() {
         useCache: true,
         // useOnlyCache: true,
         cacheMaxAge:60*60*24*10,
-        crossOrigin: false,
+        crossOrigin: !L.Browser.android23,
         dbOptions:{size:40} ,
 
     })
@@ -222,7 +222,7 @@ function initMap() {
     map.attributionControl=false;
     map.zoomControl.setPosition('topright');
     sidebar.addTo(map);
-    // sidebar.open("Introductie") // its alreay manual opend but for consisent and history logic
+    sidebar.open("Introductie") // its alreay manual opend but for consisent and history logic
 
 
     L.easyButton( {
@@ -270,12 +270,12 @@ function succes(e){
 function checkGpsSucces(){
 
  if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
-   myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opniew ");
+   myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ");
  }else if (locationRadius > 30) {
     if (L.Browser.android){
-      myWarning ("GPS te onnouwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
+      myWarning ("GPS is  te onnauwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
     }else{
-      myWarning ("Gps van dit apparaat is te onnouwkeurig voor dit spel.")
+      myWarning ("GPS van dit apparaat is te onnauwkeurig voor dit spel.")
     }
  }
 }

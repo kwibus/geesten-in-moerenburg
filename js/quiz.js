@@ -34,7 +34,7 @@ function incorrect () {
   document.activeElement.blur();
   var hint =document.getElementById("hint"+currentquestion);
   hint.style.display="block";
-  myAlert("Verkeerde antwoord!");
+  myAlert("Verkeerd antwoord!");
   hint.scrollIntoView({block:'start',behaviour:'smooth'});
 }
 

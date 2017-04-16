@@ -15,4 +15,4 @@ Its a simple static one page site, that uses new HTML5 features like GPS and loc
 
 # Acknowledgments
 
-commission by "working group Moerenburg from [nature guide course IVN](https://www.ivn.nl/cursussen)"
+commission by "working group Moerenburg from [nature guide course IVN](https://www.ivn.nl/afdeling/tilburg)"

@@ -1,11 +1,11 @@
     /*Add some spacing*/
 .faq-section{
-    margin: 15px 0;
+    margin: 12px 0;
     position: relative;
 }
 
 /*Hide the paragraphs*/
-.faq-section p{
+.faq-section >.faq-answer {
   margin-left:10px;
   display: none;
 }
@@ -16,7 +16,6 @@
     position: absolute;
     z-index: 2;
     opacity: 0;
-    display: none\9; /* IE8 and below */
     margin: 0;
     width: 1px;
     height: 1px;
@@ -45,7 +44,7 @@
 }
 
 /*If the checkbox is checked, show all paragraphs*/
-.faq-section input[type=checkbox]:checked~p{
+.faq-section input[type=checkbox]:checked~.faq-answer{
     display: block;
     color: #000;
     font-size: 1em;
@@ -67,17 +66,11 @@
     font-weight: bold;
 }
 
-/*Remove text selection when toggle-ing*/
-.faq-section label::selection{
-    background: none;
-}
-
 label:hover{
     background: #A1B327 ;
 
     transform: translateY(2px);
 }
-
 
 /*Label's arrow - default state */
 .faq-section label::before{
