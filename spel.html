@@ -661,9 +661,12 @@
             <input type="checkbox" id="q1">
             <label for="q1">Werkt het spel offline</label>
             <div class=faq-answer>
-              <p>
-                Na de eerste keer laden van het van het spel werkt het offline.
+              <p style="margin-bottom:-5px;">
+                Na de eerste keer dat het spel voledig geladen is, werkt het offline.
+                <img src="images/transparent-green-checkmark-hi.png" class="hidden questionmark" id="seed-complete"/>
               </p>
+
+              <progress id="seed-progress-bar" style="width:100%;height:6px;"value="1" max="100"></progress>
             </div>
           </section>
 
