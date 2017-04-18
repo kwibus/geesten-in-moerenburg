@@ -160,7 +160,7 @@ function initLocation(map){
     function updateTooltip (latLng,accuracy){
       accuracyCircle.setLatLng(latLng);
       accuracyCircle.setRadius(accuracy);
-      tooltip.setTooltipContent("Je bevindt je zbinnen een straal van " + Math.round (accuracy) + " meter van dit punt.");
+      tooltip.setTooltipContent("Je bevindt je binnen een straal van " + Math.round (accuracy) + " meter van dit punt.");
     };
     updateTooltip(latLng, accuracy);
     map.on('locationfound',function (e){
@@ -308,4 +308,4 @@ if (goalN !== 0){
 
 follow(map);
 
-setTimeout( checkGpsSucces, 15000);
+setTimeout( checkGpsSucces, 35000);
