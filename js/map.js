@@ -33,19 +33,16 @@ var locationRadius = 0;
 var dumylocation = L.latLng(90,0);
 var previuosLocation = dumylocation;
 var locationMarker = L.marker(dumylocation);
-locationMarker.setIcon  (
-        L.icon({
-              iconUrl:"images/arrow.png",
-              iconSize:   [40, 40],
-              iconAnchor: [20, 40],
-                })
-        );
+
 var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
 
-var lastUpdate = new Date();
-var lastErrorTime = new Date();
+var startTime=  new Date();
+var lastUpdate = startTime.getTime();
+var lastAngelUpdate= startTime.getTime();
+var lastErrorTime = startTime.getTime();
+
 var bounds = L.latLngBounds( [51.56239854,5.10838509],[51.54857681,5.13868332]);
 
 function highlightGoal() {
@@ -104,6 +101,7 @@ function onLocationError(error) {
       lastErrorTime = time;
       foundGpsError = true;
     }
+    checkLocationResetAngel();
     lastErrorTime=time;
   }else{
     foundGpsError = true;
@@ -113,6 +111,64 @@ function onLocationError(error) {
     // stopLocate();
 }
 
+  // http://www.movable-type.co.uk/scripts/latlong.html
+
+function getBearing(here, there){
+
+  var dLon = (there.lng  - here.lng);
+
+  var y = Math.sin(dLon) * Math.cos(there.lat);
+  var x = Math.cos(here.lat) * Math.sin(there.lat) - Math.sin(here.lat)
+            * Math.cos(there.lat) * Math.cos(dLon);
+  var rad=Math.atan2(x,y);
+  var angel=(rad*-180)/(Math.PI);
+  return angel;
+}
+
+function checkLocationResetAngel(){
+
+    var date = new Date();
+    var time=date.getTime();
+    if (time-lastAngelUpdate > 7000){
+      resetLocationAngel()
+    }
+}
+
+function resetLocationAngel(){
+  locationMarker.setIcon( new L.Icon.Default)
+  locationMarker.setRotationAngle(0);
+}
+
+function setLocationAngel(currentLocation){
+
+  var distance = currentLocation.distanceTo(previuosLocation);
+
+  if(distance > 2*getLocationRadious()){
+    if (distance < 1000){
+
+      var angel = getBearing(previuosLocation,currentLocation);
+
+
+      var date = new Date();
+      lastAngelUpdate = date.getTime();
+
+      locationMarker.setRotationOrigin("center center")
+      locationMarker.setIcon  (
+        L.icon({
+          iconUrl:"images/arrow.png",
+          iconSize:   [40, 40],
+        })
+      );
+
+      locationMarker.setRotationOrigin("center center")
+      locationMarker.setRotationAngle(angel);
+    }
+    previuosLocation=currentLocation;
+  }else{
+    checkLocationResetAngel();
+  }
+}
+
 function updatelocation(map,e) {
   var date=new Date();
   lastUpdate=date.getTime();
@@ -120,12 +176,7 @@ function updatelocation(map,e) {
   locationRadius=e.accuracy;
   locationMarker.setLatLng(e.latlng);
 
-  // var old=map.latLngToContainerPoint(previuosLocation);
-  var diff=map.latLngToContainerPoint(previuosLocation).subtract(map.latLngToContainerPoint(e.latlng))
-  var rad=Math.atan2(diff.x,diff.y);
-  var angel=(rad*180)/(Math.PI);
-  locationMarker.setRotationAngle(angel);
-  console.log(angel);
+  setLocationAngel(e.latlng);
 
   if ( bounds.contains(e.latlng) ){
     map.setMaxBounds(bounds);
@@ -137,7 +188,6 @@ function updatelocation(map,e) {
   if (typeof(goal) !== 'undefined') {
       line.setLatLngs([e.latlng,goal.latLng]);
   }
-  previuosLocation=e.latlng;
 }
 
 function getLocationRadious(){return locationRadius;}
@@ -300,6 +350,7 @@ function succes(e){
       }
   }
 }
+
 function checkGpsSucces(){
 
  if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
