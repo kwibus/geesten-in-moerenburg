@@ -11,6 +11,9 @@ function setcurrentQuestion(n){
 }
 
 function correct(){
+
+    var audio = new Audio("Success.mp3");
+    audio.play();
     anserCorrect();
     trySave();
     nextgoal();

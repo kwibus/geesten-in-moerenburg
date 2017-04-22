@@ -270,6 +270,9 @@ function succes(e){
         if (navigator.vibrate) {
              navigator.vibrate(1000);
         }
+        var audio = new Audio("Success.mp3");
+        audio.play();
+
         if (document.getElementById("next"+currentquestion)){
           var nextLink = document.getElementById("next"+currentquestion);
           nextLink.removeAttribute("href");
