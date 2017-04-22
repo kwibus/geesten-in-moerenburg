@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# wo 12 apr 2017 23:46:44
+# za 22 apr 2017 20:47:18
 CACHE:
 https://unpkg.com/leaflet@1.0.3/dist/leaflet.css
 https://unpkg.com/leaflet@1.0.3/dist/leaflet.js
@@ -38,9 +38,9 @@ https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
 ./images/waterpaveljoen.jpg
 ./images/lijVervuiling.jpg
 ./index.html
-http://192.168.1.51:8000/fonts/fontawesome-webfont.woff2?v=4.7.0
-http://192.168.1.51:8000/fonts/fontawesome-webfont.woff?v=4.7.0
-http://192.168.1.51:8000/fonts/fontawesome-webfont.ttf?v=4.7.0
+./fonts/fontawesome-webfont.woff2?v=4.7.0
+./fonts/fontawesome-webfont.woff?v=4.7.0
+./fonts/fontawesome-webfont.ttf?v=4.7.0
 ./js/leaflet-sidebar.js
 ./js/quiz.js
 ./js/leaflet.rotatedMarker.js
