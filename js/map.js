@@ -205,26 +205,6 @@ function initMap() {
       console.log('Cache error: ', ev.tile, ev.error);
     });
 
-  layer.on('seedprogress', function(seedData){
-    var percent = 100 - Math.floor(seedData.remainingLength / seedData.queueLength * 100);
-
-    var bar = document.getElementById("seed-progress-bar");
-    if (typeof bar !== "undefined"){
-      bar.value=percent;
-      }
-  });
-
-  layer.on('seedend', function(seedData){
-
-    var mark = document.getElementById("seed-complete");
-    if (typeof mark !== "undefined"){
-      mark.classList.remove("hidden")
-      }
-  });
-
-    layer._map=map;
-    layer.seed (bounds,16,18);
-
     map.setView(zomberlust,16) ;
 
     map.on('locationerror', onLocationError);
