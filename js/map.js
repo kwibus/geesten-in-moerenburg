@@ -31,8 +31,15 @@ setPictureMarker(goalMarkerPhoto,goal);
 
 var locationRadius = 0;
 var dumylocation = L.latLng(90,0);
+var previuosLocation = dumylocation;
 var locationMarker = L.marker(dumylocation);
-
+locationMarker.setIcon  (
+        L.icon({
+              iconUrl:"images/arrow.png",
+              iconSize:   [40, 40],
+              iconAnchor: [20, 40],
+                })
+        );
 var line = undefined;
 var goalRadious = 10;
 var accuracyCircle = undefined;
@@ -109,8 +116,16 @@ function onLocationError(error) {
 function updatelocation(map,e) {
   var date=new Date();
   lastUpdate=date.getTime();
+
   locationRadius=e.accuracy;
   locationMarker.setLatLng(e.latlng);
+
+  // var old=map.latLngToContainerPoint(previuosLocation);
+  var diff=map.latLngToContainerPoint(previuosLocation).subtract(map.latLngToContainerPoint(e.latlng))
+  var rad=Math.atan2(diff.x,diff.y);
+  var angel=(rad*180)/(Math.PI);
+  locationMarker.setRotationAngle(angel);
+  console.log(angel);
 
   if ( bounds.contains(e.latlng) ){
     map.setMaxBounds(bounds);
@@ -122,6 +137,7 @@ function updatelocation(map,e) {
   if (typeof(goal) !== 'undefined') {
       line.setLatLngs([e.latlng,goal.latLng]);
   }
+  previuosLocation=e.latlng;
 }
 
 function getLocationRadious(){return locationRadius;}
