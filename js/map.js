@@ -195,7 +195,7 @@ function initMap() {
         useCache: true,
         // useOnlyCache: true,
         cacheMaxAge:60*60*24*10,
-        crossOrigin: !L.Browser.android23,
+        crossOrigin: true,
         dbOptions:{size:40} ,
 
     })
