@@ -1,14 +1,26 @@
 var currentquestion=0;
+
+function disableLinkGoal (){
+
+        if (document.getElementById("next"+currentquestion)){
+          var nextLink = document.getElementById("next"+currentquestion);
+          nextLink.removeAttribute("href");
+          nextLink.removeAttribute("onClick");
+
+        }
+}
+
 function setcurrentQuestion(n){
 
-    currentquestion=0;
-    while (currentquestion < n){
-        nextTab();
-        anserCorrect();
-    }
-    currentquestion=n;
-    sidebar.close();
+  currentquestion=0;
+  while (currentquestion < n){
+    nextTab();
+    anserCorrect();
+  }
+  currentquestion=n;
+  sidebar.close();
 }
+
 
 function correct(){
 
@@ -21,15 +33,15 @@ function correct(){
 }
 
 function anserCorrect(){
-
-    if (document.getElementById("questions"+currentquestion)){
-      document.getElementById("mark"+currentquestion).classList.remove("hidden");
-      questions=document.getElementById("questions"+currentquestion)
-            .getElementsByClassName("question");
-      for (var i =0;i < questions.length; i++ ){
-          questions[i].disabled=true;
-      }
+  disableLinkGoal();
+  if (document.getElementById("questions"+currentquestion)){
+    document.getElementById("mark"+currentquestion).classList.remove("hidden");
+    questions=document.getElementById("questions"+currentquestion)
+      .getElementsByClassName("question");
+    for (var i =0;i < questions.length; i++ ){
+      questions[i].disabled=true;
     }
+  }
 }
 
 function incorrect () {
@@ -42,9 +54,19 @@ function incorrect () {
 }
 
 function nextTab (){
-    currentquestion++;
-    document.getElementById("tab"+currentquestion).classList.remove("disabled");
-    sidebar.open("stop"+currentquestion);
+  currentquestion++;
+
+  document.getElementById("tab"+currentquestion).classList.remove("disabled");
+  sidebar.open("stop"+currentquestion);
+}
+
+function skipQuestion (){
+  if (document.getElementById("next" + currentquestion)){
+    trySave(currentquestion);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 rebuscorect=0;

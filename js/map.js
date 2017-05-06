@@ -319,16 +319,10 @@ function succes(e){
         var audio = new Audio("Success.mp3");
         audio.play();
 
-        if (document.getElementById("next"+currentquestion)){
-          var nextLink = document.getElementById("next"+currentquestion);
-          nextLink.removeAttribute("href");
-          nextLink.removeAttribute("onClick");
-
-        }
+        disableLinkGoal();
         nextTab();
-        trySave();
-        if (document.getElementById("next"+currentquestion)){
-         nextgoal();
+        if (skipQuestion()){
+          nextgoal();
         }
       }
   }

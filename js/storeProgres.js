@@ -1,46 +1,37 @@
 var allowStorage = true;
 function checkCurrentquestion () {
-    var lastquestion=undefined;
+    var lastquestion=0;
     if (typeof(Storage) !== "undefined") {
-            lastquestion = localStorage.getItem("currentquestion");
-        if (!lastquestion){
-            // myConfirm ("Wil jij dat we je voortgang opslaan?"
-            //     ,function (){allowStorage=true;}
-            //     ,function (){allowStorage=false;}
-            // );
-            lastquestion = sessionStorage.getItem("currentquestion");
-            if (!lastquestion){
-                lastquestion=0;
-            }
-        }else {
+      var sessionLastquestion = sessionStorage.getItem("currentquestion");
+      if (sessionLastquestion == null ){
 
-            sessionLastquestion =  sessionStorage.getItem("currentquestion");
-            if (sessionLastquestion){
-                lastquestion=sessionLastquestion;
-            }else{
-                myConfirm ("wil je verdergaan waar je gebleven was"
-                    ,function () {}
-                    ,function () {
-                        deleteSaves();
-                        location.reload(true);
-
-                    }
-                );
+        var localLastquestion = localStorage.getItem("currentquestion");
+        if (localLastquestion != null){
+          lastquestion=localLastquestion;
+          myConfirm ("wil je verdergaan waar je gebleven was"
+            ,function () {}
+            ,function () {
+              deleteSaves();
+              location.reload(true);
             }
+          );
         }
+      }else{
+        lastquestion=sessionLastquestion;
+      }
 
     } else {
         myWarning("uw browser heeft geen onderstuining voor het opslaan van uw voortgang");
-        lastquestion= 0;
     }
     return lastquestion;
 }
+
 function deleteSaves (){
   sessionStorage.removeItem("currentquestion");
   localStorage.removeItem("currentquestion");
 }
 
-function trySave (){
+function trySave (currentquestion){
    if (allowStorage){
         localStorage.setItem("currentquestion",currentquestion);
    }
