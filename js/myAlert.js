@@ -1,12 +1,14 @@
 var swal = require('sweetalert2');
+
 function myAlert(string){
-    swal('Oops...', string, 'error');
+  swal('Oops...', string, 'error');
 }
 
 function myWarning(string){
-    swal("warning",string ,'warning');
+  swal('warning',string ,'warning');
 }
 function myConfirm (string,whenSucces,whenFail){
+  // TODO for now this work because L is now global but this may chang in future
   if (L.Browser.ielt9 || L.Browser.msPointer){
     if (confirm(string)){
       whenSucces();

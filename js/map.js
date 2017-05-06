@@ -7,7 +7,7 @@ require('leaflet-rotatedmarker');
 require('leaflet.tilelayer.fallback');
 
 global.PouchDB = require('pouchdb');
-require('leaflet.tilelayer.pouchdbcached')
+require('leaflet.tilelayer.pouchdbcached');
 require('leaflet-spin')(L);
 
 global.Spinner = require('spin.js');
@@ -30,17 +30,17 @@ function Goal (name , latLng, image){
 
 var goalN = 0;
 var goals = [
-    Goal ("Langs de oever van de Korvelse Waterloop",[51.558567,5.122133], 'images/halte1.jpg'),
-    Goal ("De Buunder/ het Grollegat",[51.55655 ,5.124533], 'images/halte2.jpg'),
-    Goal ("Bij het bruggetje over de Leij",[51.555333,5.1225],   'images/halte3.jpg'),
-    Goal ("Aan de Kommerstraat",[51.5557  ,5.1212],   'images/halte4.jpg'),
-    Goal ("Langs de Meijerijbaan",[51.554233,5.120233], 'images/halte5.jpg'),
-    Goal ("Aan de Lange Jan",[51.553717,5.115183], 'images/halte6.jpg'),
-    Goal ("Het Water Paviljoen",[51.55535 ,5.11645],  'images/halte7.jpg'),
-    Goal ("Toegang naar het Helofytenfilter",[51.5565  ,5.114183], 'images/halte8.jpg'),
-    Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
-    Goal ("Huize Moerenburg",[51.557067,5.117467], 'images/halte9.jpg'),
-    ];
+  Goal ('Langs de oever van de Korvelse Waterloop',[51.558567,5.122133], 'images/halte1.jpg'),
+  Goal ('De Buunder/ het Grollegat',[51.55655 ,5.124533], 'images/halte2.jpg'),
+  Goal ('Bij het bruggetje over de Leij',[51.555333,5.1225],   'images/halte3.jpg'),
+  Goal ('Aan de Kommerstraat',[51.5557  ,5.1212],   'images/halte4.jpg'),
+  Goal ('Langs de Meijerijbaan',[51.554233,5.120233], 'images/halte5.jpg'),
+  Goal ('Aan de Lange Jan',[51.553717,5.115183], 'images/halte6.jpg'),
+  Goal ('Het Water Paviljoen',[51.55535 ,5.11645],  'images/halte7.jpg'),
+  Goal ('Toegang naar het Helofytenfilter',[51.5565  ,5.114183], 'images/halte8.jpg'),
+  Goal ('Huize Moerenburg',[51.557067,5.117467], 'images/halte9.jpg'),
+  Goal ('Huize Moerenburg',[51.557067,5.117467], 'images/halte9.jpg'),
+];
 
 var goal=goals[goalN];
 var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
@@ -80,29 +80,30 @@ function setgoal(newgoal){
 
   goalMarkerCircle.setLatLng(goal.latLng);
   goalMarkerPhoto.setLatLng(goal.latLng);
-  setPictureMarker(goalMarkerPhoto, goal)
+  setPictureMarker(goalMarkerPhoto, goal);
 }
 
 function setPictureMarker(marker,goal){
 
-    marker.closePopup();
-    marker.setIcon  (
-        L.icon({
-              iconUrl:goal.image,
+  marker.closePopup();
+  marker.setIcon  (
+    L.icon({
+      iconUrl:goal.image,
 
-              iconSize:     [40, 40],
-              iconAnchor: [0, 40],
-              className: 'leaflet-popup-photo',
-                })
-        );
+      iconSize:     [40, 40],
+      iconAnchor: [0, 40],
+      className: 'leaflet-popup-photo',
+    })
+  );
 
-    marker.bindPopup(
-        "<figure > <img src="+goal.image+"> <figcaption>" + goal.name + "</figcaption> </figure>"
-        ,{className: 'leaflet-popup-photo'}
-        );
+  marker.bindPopup(
+    '<figure > <img src='+goal.image+'> <figcaption>' + goal.name + '</figcaption> </figure>'
+    ,{className: 'leaflet-popup-photo'}
+  );
 }
 
 function onLocationError(error) {
+
   console.log(error.message);
   if (error.code===3 ){
     // error.code 3 = timout
@@ -115,7 +116,7 @@ function onLocationError(error) {
     var date = new Date();
     var time=date.getTime();
     if (lastErrorTime - lastUpdate > 40000){
-      Alert.myWarning ("gps staat uit");
+      Alert.myWarning ('gps staat uit');
       lastErrorTime = time;
       foundGpsError = true;
     }
@@ -125,12 +126,9 @@ function onLocationError(error) {
     foundGpsError = true;
     Alert.myWarning(error.message);
   }
-
-    // stopLocate();
 }
 
-  // http://www.movable-type.co.uk/scripts/latlong.html
-
+// http://www.movable-type.co.uk/scripts/latlong.html
 function getBearing(here, there){
 
   var dLon = (there.lng  - here.lng);
@@ -145,15 +143,15 @@ function getBearing(here, there){
 
 function checkLocationResetAngel(){
 
-    var date = new Date();
-    var time=date.getTime();
-    if (time-lastAngelUpdate > 7000){
-      resetLocationAngel()
-    }
+  var date = new Date();
+  var time=date.getTime();
+  if (time-lastAngelUpdate > 7000){
+    resetLocationAngel();
+  }
 }
 
 function resetLocationAngel(){
-  locationMarker.setIcon( new L.Icon.Default)
+  locationMarker.setIcon( new L.Icon.Default);
   locationMarker.setRotationAngle(0);
 }
 
@@ -170,15 +168,14 @@ function setLocationAngel(currentLocation){
       var date = new Date();
       lastAngelUpdate = date.getTime();
 
-      locationMarker.setRotationOrigin("center center")
       locationMarker.setIcon  (
         L.icon({
-          iconUrl:"images/arrow.png",
+          iconUrl:'images/arrow.png',
           iconSize:   [40, 40],
         })
       );
 
-      locationMarker.setRotationOrigin("center center")
+      locationMarker.setRotationOrigin('center center');
       locationMarker.setRotationAngle(angel);
     }
     previuosLocation=currentLocation;
@@ -267,96 +264,95 @@ function initLine(map){
 
 function initMap() {
 
-    document.getElementById("map").style.height=window.innerHeight + "px";
-    var map = L.map('map',{attributionControl:false});
+  document.getElementById('map').style.height = window.innerHeight + 'px';
+  var map = L.map('map',{attributionControl:false});
 
-    document.body.onresize = function (){
-      document.getElementById("map").style.height=window.innerHeight + "px";
-      map.invalidateSize();
-    };
-    var layer = L.tileLayer.fallback('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
-        useCache: true,
-        // useOnlyCache: true,
-        cacheMaxAge:60*60*24*10,
-        crossOrigin: true,
-        dbOptions:{size:40} ,
+  document.body.onresize = function (){
+    document.getElementById('map').style.height=window.innerHeight + 'px';
+    map.invalidateSize();
+  };
+  var layer = L.tileLayer.fallback('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
+    useCache: true,
+    cacheMaxAge:60*60*24*10,
+    crossOrigin: true,
+    dbOptions:{size:40} ,
+  });
 
-    })
+  layer.addTo(map);
+  layer.on('tilecacheerror',function(ev){
+    console.log('Cache error: ', ev.tile, ev.error);
+  });
 
-    layer.addTo(map);
-    layer.on('tilecacheerror',function(ev){
-      console.log('Cache error: ', ev.tile, ev.error);
-    });
+  map.setView(zomberlust,16) ;
 
-    map.setView(zomberlust,16) ;
+  map.on('locationerror', onLocationError);
 
-    map.on('locationerror', onLocationError);
-
-    L.control.scale( {
-        position:'bottomright',
-        imperial:false,
-        updateWhenIdle:false
-      }).addTo(map);
+  L.control.scale( {
+    position:'bottomright',
+    imperial:false,
+    updateWhenIdle:false
+  }).addTo(map);
 
 
-    map.attributionControl=false;
-    map.zoomControl.setPosition('topright');
-    sidebar.addTo(map);
-    sidebar.open("Introductie") // its alreay manual opend but for consisent and history logic
+  map.attributionControl=false;
+  map.zoomControl.setPosition('topright');
+  sidebar.addTo(map);
+  sidebar.open('Introductie') // its alreay manual opend but for consisent and history logic
 
 
-    L.easyButton( {
-        position: 'topright',
-        states: [{
-            icon:'fa-map-marker',
-            onClick: function(btn, map){ map.panTo(locationMarker.getLatLng());}
-        }]
-    }).addTo(map);
-    return map
+  L.easyButton( {
+    position: 'topright',
+    states: [{
+      icon:'fa-map-marker',
+      onClick: function(btn, map){ map.panTo(locationMarker.getLatLng());}
+    }]
+  }).addTo(map);
+  return map;
 }
 
 // TODO refactor rename reorder
 function follow (map){
-    map.on('locationfound', function (e) {
-        updatelocation (map,e);
-    });
-    map.on('locationfound',succes);
 
-    map.locate({setView: false, watch :true, maximumAge: 5000, enableHighAccuracy:true});
+  map.on('locationfound', function (e) {
+    updatelocation (map,e);
+  });
+  map.on('locationfound',succes);
+
+  map.locate({setView: false, watch :true, maximumAge: 5000, enableHighAccuracy:true});
 }
 
 function succes(e){
 
   if (typeof(goal) !== 'undefined') {
-      if (e.latlng.distanceTo(goal.latLng) < goalRadious) {
+    if (e.latlng.distanceTo(goal.latLng) < goalRadious) {
       goal=undefined;
-        if (navigator.vibrate) {
-             navigator.vibrate(1000);
-        }
-        var audio = new Audio("Success.mp3");
-        audio.play();
-
-        Quize.disableLinkGoal();
-        Quize.nextTab();
-        if (Quize.skipQuestion()){
-          nextgoal();
-        }
+      if (navigator.vibrate) {
+        navigator.vibrate(1000);
       }
+      var audio = new Audio('Success.mp3');
+      audio.play();
+
+      Quize.disableLinkGoal();
+      Quize.nextTab();
+      if (Quize.skipQuestion()){
+        nextgoal();
+      }
+    }
   }
 }
 
 function checkGpsSucces(){
 
- if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
-   Alert.myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ");
- }else if (locationRadius > 30) {
+  if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
+    Alert.myWarning ('GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ');
+  }else if (locationRadius > 30) {
     if (L.Browser.android){
-      Alert.myWarning ("GPS is  te onnauwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
+      Alert.myWarning ('GPS is  te onnauwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus');
     }else{
-      Alert.myWarning ("GPS van dit apparaat is te onnauwkeurig voor dit spel.")
+      Alert.myWarning ('GPS van dit apparaat is te onnauwkeurig voor dit spel.');
     }
- }
+  }
 }
 
 var map = initMap();
