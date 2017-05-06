@@ -1,3 +1,4 @@
+var swal = require('sweetalert2');
 function myAlert(string){
     swal('Oops...', string, 'error');
 }
@@ -21,3 +22,7 @@ function myConfirm (string,whenSucces,whenFail){
     }).then( whenSucces, whenFail);
   }
 }
+
+module.exports.myConfirm=myConfirm;
+module.exports.myAlert=myAlert;
+module.exports.myWarning=myWarning;

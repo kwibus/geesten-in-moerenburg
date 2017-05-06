@@ -1,6 +1,24 @@
-'use strict';
-var zomberlust=L.latLng(51.55938707072835,5.11301726102829);
-var sidebar=L.control.sidebar('sidebar');
+
+var L = require('leaflet');
+
+require('leaflet-easybutton');
+require('./Leaflet.EdgeMarker.js');
+require('leaflet-rotatedmarker');
+require('leaflet.tilelayer.fallback');
+
+global.PouchDB = require('pouchdb');
+require('leaflet.tilelayer.pouchdbcached')
+require('leaflet-spin')(L);
+
+global.Spinner = require('spin.js');
+require('./leaflet-sidebar');
+
+var Store = require('./storeProgres.js');
+var Quize = require('./quiz.js');
+var Alert= require('./myAlert.js');
+
+var zomberlust = L.latLng(51.55938707072835,5.11301726102829);
+global.sidebar = L.control.sidebar('sidebar');
 var foundGpsError=false;
 function Goal (name , latLng, image){
   return {
@@ -53,7 +71,7 @@ function highlightGoal() {
 }
 
 function nextgoal(){
-   setgoal (goals[++goalN]);
+  setgoal (goals[++goalN]);
 }
 
 function setgoal(newgoal){
@@ -97,7 +115,7 @@ function onLocationError(error) {
     var date = new Date();
     var time=date.getTime();
     if (lastErrorTime - lastUpdate > 40000){
-      myWarning ("gps staat uit");
+      Alert.myWarning ("gps staat uit");
       lastErrorTime = time;
       foundGpsError = true;
     }
@@ -105,7 +123,7 @@ function onLocationError(error) {
     lastErrorTime=time;
   }else{
     foundGpsError = true;
-    myWarning(error.message);
+    Alert.myWarning(error.message);
   }
 
     // stopLocate();
@@ -181,7 +199,7 @@ function updatelocation(map,e) {
   if ( bounds.contains(e.latlng) ){
     map.setMaxBounds(bounds);
 
-  }else {
+  } else {
     map.setMaxBounds( undefined);
   }
 
@@ -319,9 +337,9 @@ function succes(e){
         var audio = new Audio("Success.mp3");
         audio.play();
 
-        disableLinkGoal();
-        nextTab();
-        if (skipQuestion()){
+        Quize.disableLinkGoal();
+        Quize.nextTab();
+        if (Quize.skipQuestion()){
           nextgoal();
         }
       }
@@ -331,25 +349,36 @@ function succes(e){
 function checkGpsSucces(){
 
  if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
-   myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ");
+   Alert.myWarning ("GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ");
  }else if (locationRadius > 30) {
     if (L.Browser.android){
-      myWarning ("GPS is  te onnauwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
+      Alert.myWarning ("GPS is  te onnauwkeurig. controleer of je telefoon op nauwkeurig modus staat bij: insteling > location > modus")
     }else{
-      myWarning ("GPS van dit apparaat is te onnauwkeurig voor dit spel.")
+      Alert.myWarning ("GPS van dit apparaat is te onnauwkeurig voor dit spel.")
     }
  }
 }
+
 var map = initMap();
 initLine(map);
 initGoal(map);
 initLocation(map);
-var goalN =checkCurrentquestion();
+
+goalN = Store.checkCurrentquestion();
 if (goalN !== 0){
   setgoal(goals[goalN]);
-  setcurrentQuestion(goalN);
+  Quize.setcurrentQuestion(goalN);
 }
 
 follow(map);
 
 setTimeout( checkGpsSucces, 35000);
+
+module.exports.highlightGoal= highlightGoal;
+global.nextTab = Quize.nextTab;
+global.nextgoal = nextgoal;
+global.correct = Quize.correct;
+global.incorrect = Quize.incorrect;
+global.checkKey = Quize.checkKey;
+global.deleteSaves = Store.deleteSaves;
+

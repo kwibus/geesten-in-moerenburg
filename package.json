@@ -1,0 +1,39 @@
+{
+  "name": "geesteninmoerenburg",
+  "version": "1.0.0",
+  "description": "[GeesteninMoerenburg.nl](GeesteninMoerenburg.nl) is a GPS-based scavenger hunt, that you can walk with you smart phone or tablet. Your are guided by a map to walk to a location. Here you get quiz related to the location, when you complet that your are guided to the next location.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "leaflet": "^1.0.3",
+    "leaflet-easybutton": "^2.2.0",
+    "leaflet-rotatedmarker": "^0.1.2",
+    "leaflet-pouchDBCached":"kwibus/Leaflet.TileLayer.PouchDBCached",
+    "pouchdb": "^5.2",
+    "leaflet.tilelayer.fallback": "^1.0.3",
+    "leaflet-spin": "^1.1.0",
+    "spin.js": "^2.3.2",
+    "sweetalert2": "^6.6.1"
+  },
+  "devDependencies": {
+    "browserfy": "^1.0.0",
+    "watchify": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify js/map.js  -o js/bundle.js --debug --verbose",
+    "build-js": "browserify js/map.js > js/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwibus/speurtocht.git"
+  },
+  "author": "Rens Sikam",
+  "bugs": {
+    "url": "https://github.com/kwibus/speurtocht/issues"
+  },
+  "homepage": "https://github.com/kwibus/speurtocht#readme"
+}

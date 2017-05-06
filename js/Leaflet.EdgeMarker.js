@@ -56,7 +56,7 @@
 
 
             var rad = Math.atan2(center.y - y, center.x - x);
-            var rad2TopLeftcorner= Math.atan2(center.y-mapPixelBounds.min.y,center.x-mapPixelBounds.min.x)
+            var rad2TopLeftcorner = Math.atan2(center.y-mapPixelBounds.min.y,center.x-mapPixelBounds.min.x);
 
             // maker is in between diagonals window
             if (Math.abs(rad) > rad2TopLeftcorner && Math.abs (rad) < Math.PI -rad2TopLeftcorner) {

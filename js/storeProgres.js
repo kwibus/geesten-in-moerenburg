@@ -1,14 +1,18 @@
+var Alert = require('./myAlert')
+
 var allowStorage = true;
+var Alert = require('./myAlert.js');
+
 function checkCurrentquestion () {
     var lastquestion=0;
     if (typeof(Storage) !== "undefined") {
       var sessionLastquestion = sessionStorage.getItem("currentquestion");
-      if (sessionLastquestion == null ){
+      if (sessionLastquestion == undefined || sessionLastquestion == null ){
 
         var localLastquestion = localStorage.getItem("currentquestion");
         if (localLastquestion != null){
           lastquestion=localLastquestion;
-          myConfirm ("wil je verdergaan waar je gebleven was"
+          Alert.myConfirm ("wil je verdergaan waar je gebleven was"
             ,function () {}
             ,function () {
               deleteSaves();
@@ -21,7 +25,7 @@ function checkCurrentquestion () {
       }
 
     } else {
-        myWarning("uw browser heeft geen onderstuining voor het opslaan van uw voortgang");
+        Allert.myWarning("uw browser heeft geen onderstuining voor het opslaan van uw voortgang");
     }
     return lastquestion;
 }
@@ -37,3 +41,8 @@ function trySave (currentquestion){
    }
    sessionStorage.setItem("currentquestion",currentquestion);
 }
+
+module.exports.checkCurrentquestion = checkCurrentquestion;
+module.exports.trySave = trySave;
+
+module.exports.deleteSaves = deleteSaves;

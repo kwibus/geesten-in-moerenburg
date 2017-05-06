@@ -41,14 +41,7 @@ https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
 ./fonts/fontawesome-webfont.woff2?v=4.7.0
 ./fonts/fontawesome-webfont.woff?v=4.7.0
 ./fonts/fontawesome-webfont.ttf?v=4.7.0
-./js/leaflet-sidebar.js
-./js/quiz.js
-./js/leaflet.rotatedMarker.js
-./js/Leaflet.EdgeMarker.js
-./js/L.TileLayer.PouchDBCached.js
-./js/myAlert.js
-./js/map.js
-./js/storeProgres.js
+./js/bundle.js
 ./css/Leaflet.Photo.css
 ./css/index.css
 ./css/font-awesome.min.css
