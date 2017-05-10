@@ -28,7 +28,7 @@ function setcurrentQuestion(n){
 
 function correct(){
 
-  var audio = new Audio('Success.mp3');
+  var audio = new Audio('audio/success.mp3');
   audio.play();
   anserCorrect();
   Store.trySave(currentquestion);
@@ -88,7 +88,7 @@ function checkKey (id,n){
       document.getElementById('tab10').classList.remove('disabled');
       sidebar.open('stop10');
 
-      var audio = new Audio('victory.mp3');
+      var audio = new Audio('audio/victory.mp3');
       audio.play();
     }
   }else{

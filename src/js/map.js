@@ -330,7 +330,7 @@ function succes(e){
       if (navigator.vibrate) {
         navigator.vibrate(1000);
       }
-      var audio = new Audio('Success.mp3');
+      var audio = new Audio('audio/success.mp3');
       audio.play();
 
       Quize.disableLinkGoal();

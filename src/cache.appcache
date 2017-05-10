@@ -9,7 +9,8 @@ https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js
 https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.css
 https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.js
 https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
-./victory.mp3
+./audio/victory.mp3
+./audio/success.mp3
 ./images/tropy.jpg
 ./images/halte7.gif
 ./images/vleermuisKastje.jpg
