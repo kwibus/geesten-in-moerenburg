@@ -43,6 +43,8 @@ https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
 ./fonts/fontawesome-webfont.woff?v=4.7.0
 ./fonts/fontawesome-webfont.ttf?v=4.7.0
 ./js/bundle.js
+./css/global.css
+./css/spel.css
 ./css/Leaflet.Photo.css
 ./css/index.css
 ./css/font-awesome.min.css

@@ -1,0 +1,36 @@
+.hint{
+    background-color: #c3c3c3;
+    border-radius: 5px;
+    padding-top: 1px;
+    padding-left: 10px;
+}
+.textmarker{
+    height:1.5em;
+    vertical-align:middle
+}
+.hidden{
+  display:none;
+}
+.questionmark{
+  height:1.2em;
+  float:right;
+}
+.swal2-container{
+    z-index:10000 !important;
+}
+
+.letterbox{
+  font-weight:bold;
+  border-width: 1px;
+  border-style:solid;
+  width:1.5em;
+  height:1.5em;
+  text-align:center;
+  background-color:#fff;
+  color:#000;
+
+  transform: rotate(90deg);
+  /* -webkit-transform: rotate(270deg); */
+  /* -moz-transform:rotate(270deg); */
+  /* -o-transform: rotate(270deg); */
+}

@@ -41,7 +41,7 @@ function anserCorrect(){
   if (document.getElementById('questions' + currentquestion)){
     document.getElementById('mark' + currentquestion).classList.remove('hidden');
     var questions = document.getElementById('questions' + currentquestion)
-      .getElementsByClassName('question');
+      .getElementsByClassName('button');
     for (var i =0;i < questions.length; i++ ){
       questions[i].disabled=true;
     }
