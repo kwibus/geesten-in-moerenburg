@@ -1,17 +1,15 @@
 CACHE MANIFEST
 # za 22 apr 2017 20:47:18
 CACHE:
-https://unpkg.com/leaflet@1.0.3/dist/leaflet.css
-https://unpkg.com/leaflet@1.0.3/dist/leaflet.js
-https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css
-https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js
-https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js
-https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.css
-https://cdn.jsdelivr.net/sweetalert2/6.4.4/sweetalert2.min.js
-https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
 ./audio/victory.mp3
 ./audio/success.mp3
 ./images/tropy.jpg
+./images/layers-2x.png
+./images/layers.png
+./images/marker-icon.png
+./images/marker-icon-2x.png
+./images/marker-shadow.png
+
 ./images/halte7.gif
 ./images/vleermuisKastje.jpg
 ./images/monnik.gif
@@ -45,10 +43,8 @@ https://unpkg.com/pouchdb@5.2.0/dist/pouchdb.js
 ./js/bundle.js
 ./css/global.css
 ./css/spel.css
-./css/Leaflet.Photo.css
 ./css/index.css
 ./css/font-awesome.min.css
-./css/leaflet-sidebar.css
 ./css/faq.css
 ./spel.html
 

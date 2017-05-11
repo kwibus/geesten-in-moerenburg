@@ -1,6 +1,8 @@
 
 var L = require('leaflet');
 
+L.Icon.Default.imagePath = 'images/';
+
 require('leaflet-easybutton');
 require('./Leaflet.EdgeMarker.js');
 require('leaflet-rotatedmarker');
@@ -263,7 +265,6 @@ function initLine(map){
 }
 
 function initMap() {
-
   document.getElementById('map').style.height = window.innerHeight + 'px';
   var map = L.map('map',{attributionControl:false});
 
