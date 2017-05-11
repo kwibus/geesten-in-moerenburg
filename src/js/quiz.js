@@ -18,9 +18,10 @@ function setcurrentQuestion(n){
 
   currentquestion=0;
   while (currentquestion < n){
-    nextTab();
     anserCorrect();
+    nextTab();
   }
+  anserCorrect();
   currentquestion=n;
   sidebar.close();
 }
