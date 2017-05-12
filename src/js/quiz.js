@@ -86,15 +86,14 @@ function checkKey (id,n){
     rebuscorect++;
     if(rebuscorect>=rebusAnser.length){
 
-      document.getElementById('tab10').classList.remove('disabled');
-      sidebar.open('stop10');
-
+      nextTab();
       var audio = new Audio('audio/victory.mp3');
       audio.play();
     }
   }else{
     document.getElementById('markWrong' + n).classList.remove('hidden');
   }
+  id.blur();
 }
 
 module.exports.skipQuestion = skipQuestion;
