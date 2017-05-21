@@ -21,9 +21,11 @@ function setcurrentQuestion(n){
     anserCorrect();
     nextTab();
   }
-  anserCorrect();
-  currentquestion=n;
-  sidebar.close();
+  currentquestion = n;
+  if (n !== 0){
+    anserCorrect();
+    sidebar.close();
+  }
 }
 
 
