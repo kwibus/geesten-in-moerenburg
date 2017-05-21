@@ -397,7 +397,7 @@ follow(map);
 
 setTimeout( checkGpsSucces, 35000);
 
-module.exports.highlightGoal= highlightGoal;
+global.highlightGoal= highlightGoal;
 global.nextTab = Quize.nextTab;
 global.nextgoal = nextgoal;
 global.correct = Quize.correct;
