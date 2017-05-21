@@ -66,7 +66,6 @@ function highlightGoal() {
   sidebar.close();
   map.fitBounds(line.getBounds());
   goalMarkerPhoto.openPopup();
-  locationMarker.openTooltip();
 }
 
 function nextgoal(){
@@ -232,7 +231,7 @@ function initLocation(map){
   var setMarker = function (e) {
     var latLng = e.latlng;
     locationMarker = L.marker(e.latlng);
-    locationMarker.bindTooltip();
+    locationMarker.bindTooltip('je bent hier');
 
     locationMarker.addTo(map);
     updatelocation(map,e);
@@ -255,14 +254,16 @@ function initLocation(map){
       function updateTooltip (latLng,accuracy){
         accuracyCircle.setLatLng(latLng);
         accuracyCircle.setRadius(accuracy);
-        tooltip.setTooltipContent('Je bevindt je binnen een straal van ' + Math.round (accuracy) + ' meter van dit punt.');
       }
+
       updateTooltip(latLng, accuracy);
       map.on('locationfound',function (e){
         updateTooltip (e.latlng,e.accuracy);
       });
     });
     locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
+
+    locationMarker.openTooltip();
   };
 
   map.once('locationfound', setMarker);
