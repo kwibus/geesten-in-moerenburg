@@ -36,7 +36,7 @@ function correct(){
   anserCorrect();
   Store.trySave(currentquestion);
   nextgoal(); //TODO for now nextgoal is global
-  Map.highlightGoal();
+  highlightGoal();
 }
 
 function anserCorrect(){
