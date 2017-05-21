@@ -366,7 +366,7 @@ function succes(e){
 
 function checkGpsSucces(){
 
-  if (locationMarker != undefined && !foundGpsError){
+  if (locationMarker == undefined && !foundGpsError){
     Alert.myWarning ('GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ');
   }else if (locationRadius > 30) {
     if (L.Browser.android){

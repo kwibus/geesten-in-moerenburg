@@ -69,8 +69,5 @@ dist/%: src/%
 clean:
 	rm -rf $(ROOT_DIR)dist/!(.git|.|..)
 
-test:
-	echo $(PATH)
-	echo $$PATH
 
 
