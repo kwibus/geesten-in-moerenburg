@@ -87,6 +87,8 @@ function checkKey (id,n){
     if(rebuscorect>=rebusAnser.length){
 
       nextTab();
+
+      Store.trySave(currentquestion);
       var audio = new Audio('audio/victory.mp3');
       audio.play();
     }

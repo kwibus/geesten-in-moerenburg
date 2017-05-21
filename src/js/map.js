@@ -20,7 +20,9 @@ var Quize = require('./quiz.js');
 var Alert= require('./myAlert.js');
 
 var zomberlust = L.latLng(51.55938707072835,5.11301726102829);
+
 global.sidebar = L.control.sidebar('sidebar');
+
 var foundGpsError=false;
 function Goal (name , latLng, image){
   return {
@@ -30,7 +32,6 @@ function Goal (name , latLng, image){
   };
 }
 
-var goalN = 0;
 var goals = [
   Goal ('Langs de oever van de Korvelse Waterloop',[51.558567,5.122133], 'images/halte1.jpg'),
   Goal ('De Buunder/ het Grollegat',[51.55655 ,5.124533], 'images/halte2.jpg'),
@@ -41,21 +42,17 @@ var goals = [
   Goal ('Het Water Paviljoen',[51.55535 ,5.11645],  'images/halte7.jpg'),
   Goal ('Toegang naar het Helofytenfilter',[51.5565  ,5.114183], 'images/halte8.jpg'),
   Goal ('Huize Moerenburg',[51.557067,5.117467], 'images/halte9.jpg'),
-  Goal ('Huize Moerenburg',[51.557067,5.117467], 'images/halte9.jpg'),
 ];
 
-var goal=goals[goalN];
-var goalMarkerCircle = L.circle(goal.latLng,goalRadious);
-var goalMarkerPhoto= L.marker(goal.latLng);
-setPictureMarker(goalMarkerPhoto,goal);
+var goalRadious = 10;
+var goalMarkerCircle = undefined ;
+var goalMarkerPhoto = undefined;
 
 var locationRadius = 0;
 var dumylocation = L.latLng(90,0);
 var previuosLocation = dumylocation;
-var locationMarker = L.marker(dumylocation);
+var locationMarker = undefined ; // L.marker(dumylocation);
 
-var line = undefined;
-var goalRadious = 10;
 var accuracyCircle = undefined;
 
 var startTime=  new Date();
@@ -78,11 +75,18 @@ function nextgoal(){
 
 function setgoal(newgoal){
   goal = newgoal;
-  line.setLatLngs([locationMarker.getLatLng(),goal.latLng]);
 
-  goalMarkerCircle.setLatLng(goal.latLng);
-  goalMarkerPhoto.setLatLng(goal.latLng);
-  setPictureMarker(goalMarkerPhoto, goal);
+  if (newgoal!=undefined){
+    if (line != undefined){
+      var latLngs =  line.getLatLngs();
+      latLngs[1]=goal.latLng;
+      line.setLatLngs(latLngs);
+      line.redraw();
+    }
+    goalMarkerCircle.setLatLng(goal.latLng);
+    goalMarkerPhoto.setLatLng(goal.latLng);
+    setPictureMarker(goalMarkerPhoto, goal);
+  }
 }
 
 function setPictureMarker(marker,goal){
@@ -113,7 +117,6 @@ function onLocationError(error) {
     //      gps is off
     //      page was on standby
     //      gps was slow, happens ones in will
-    // if (time.getTime()- lastErrorTime.getTime()>= 7000){
 
     var date = new Date();
     var time=date.getTime();
@@ -201,19 +204,25 @@ function updatelocation(map,e) {
   } else {
     map.setMaxBounds( undefined);
   }
-
-  if (typeof(goal) !== 'undefined') {
-      line.setLatLngs([e.latlng,goal.latLng]);
+  if (line != undefined){
+    var latLngs =  line.getLatLngs();
+    latLngs[0]=e.latlng;
+    line.setLatLngs(latLngs);
+    line.redraw();
   }
 }
 
 function getLocationRadious(){return locationRadius;}
 
-function initGoal(map){
-
+function initGoal(map,goal){
+  if (goal != undefined){
+    goalMarkerCircle = L.circle(goal.latLng,goalRadious);
+    goalMarkerPhoto = L.marker(goal.latLng);
     goalMarkerCircle.addTo(map);
     goalMarkerPhoto.addTo(map);
     goalMarkerPhoto.bindEdgeMarker();
+    setgoal(goal);
+  }
 
 }
 
@@ -221,47 +230,59 @@ function initLocation(map){
 
   map.spin(true);
   var setMarker = function (e) {
+    var latLng = e.latlng;
+    locationMarker = L.marker(e.latlng);
     locationMarker.bindTooltip();
+
+    locationMarker.addTo(map);
     updatelocation(map,e);
-    map.fitBounds(line.getBounds());
+    if (line!=undefined){
+      var view=line.getBounds();
+      map.fitBounds(view ,{maxzoom:16});
+      // map.flyToBounds(view);
+    } else {
+      map.panTo(e.latlng);
+    }
     map.spin(false);
-  }
+
+    locationMarker.on ('tooltipopen', function () {
+
+      var latLng = locationMarker.getLatLng();
+      var accuracy = getLocationRadious();
+
+      accuracyCircle=L.circle (latLng, accuracy).addTo(map);
+      var tooltip = this
+      function updateTooltip (latLng,accuracy){
+        accuracyCircle.setLatLng(latLng);
+        accuracyCircle.setRadius(accuracy);
+        tooltip.setTooltipContent('Je bevindt je binnen een straal van ' + Math.round (accuracy) + ' meter van dit punt.');
+      }
+      updateTooltip(latLng, accuracy);
+      map.on('locationfound',function (e){
+        updateTooltip (e.latlng,e.accuracy);
+      });
+    });
+    locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
+  };
 
   map.once('locationfound', setMarker);
 
-  map.locate({setView: true, watch :false});
-  locationMarker.addTo(map);
+  map.locate({setView: false , watch :false});
 
 
-  locationMarker.on ('tooltipopen', function () {
-
-    var latLng = locationMarker.getLatLng();
-    var accuracy = getLocationRadious();
-
-    accuracyCircle=L.circle (latLng, accuracy).addTo(map);
-    var tooltip = this
-    function updateTooltip (latLng,accuracy){
-      accuracyCircle.setLatLng(latLng);
-      accuracyCircle.setRadius(accuracy);
-      tooltip.setTooltipContent("Je bevindt je binnen een straal van " + Math.round (accuracy) + " meter van dit punt.");
-    };
-    updateTooltip(latLng, accuracy);
-    map.on('locationfound',function (e){
-      updateTooltip (e.latlng,e.accuracy);
-    });
-  });
-  locationMarker.on ('tooltipclose', function () {accuracyCircle.remove() ;} );
 }
 
-function initLine(map){
-    var latlngs = [goal.latLng,goal.latLng];
-    line = L.polyline(latlngs, {color: 'green'}).addTo(map);
-    line.on( 'click', (function (e) {
-        map.openPopup(
-            (Math.round(locationMarker.getLatLng().distanceTo(goalMarkerCircle.getLatLng())) + "m")
-           , e.latlng
-        );
-    }));
+function initLine(map,goal){
+  var latlngs = [dumylocation,goal.latLng];
+  var line = L.polyline(latlngs, {color: 'green'}).addTo(map);
+  line.on( 'click', (function (e) {
+    map.openPopup(
+      (Math.round(locationMarker.getLatLng().distanceTo(goalMarkerCircle.getLatLng())) + 'm')
+      , e.latlng
+    );
+  }));
+
+  return line;
 }
 
 function initMap() {
@@ -320,7 +341,7 @@ function follow (map){
   });
   map.on('locationfound',succes);
 
-  map.locate({setView: false, watch :true, maximumAge: 5000, enableHighAccuracy:true});
+  map.locate({setView: false , watch :true, maximumAge: 5000, enableHighAccuracy:true});
 }
 
 function succes(e){
@@ -345,7 +366,7 @@ function succes(e){
 
 function checkGpsSucces(){
 
-  if (locationMarker.getLatLng() === dumylocation && !foundGpsError){
+  if (locationMarker != undefined && !foundGpsError){
     Alert.myWarning ('GPS error. Herlaad pagina, Als date niet werkt zet je telefoon uit en aan  en prbeer opnieuw ');
   }else if (locationRadius > 30) {
     if (L.Browser.android){
@@ -357,16 +378,20 @@ function checkGpsSucces(){
 }
 
 var map = initMap();
-initLine(map);
-initGoal(map);
+
+var goalN = Store.checkCurrentquestion();
+
+var goal = goals[goalN];
+
+Quize.setcurrentQuestion(goalN);
+
+var line=undefined;
+
+initGoal(map,goal);
 initLocation(map);
-
-goalN = Store.checkCurrentquestion();
-if (goalN !== 0){
-  setgoal(goals[goalN]);
-  Quize.setcurrentQuestion(goalN);
+if (goal != undefined){
+  line = initLine(map,goal);
 }
-
 follow(map);
 
 setTimeout( checkGpsSucces, 35000);
