@@ -229,7 +229,6 @@ function initLocation(map){
 
   map.spin(true);
   var setMarker = function (e) {
-    var latLng = e.latlng;
     locationMarker = L.marker(e.latlng);
     locationMarker.bindTooltip('je bent hier');
 
