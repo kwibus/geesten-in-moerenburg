@@ -1,6 +1,6 @@
 
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-export PATH:="$(ROOT_DIR)node_modules/.bin/:$(PATH)"
+export PATH:=$(ROOT_DIR)node_modules/.bin/:$(PATH)
 
 SHELL :=/bin/bash -O extglob
 
@@ -26,7 +26,7 @@ leaflet-images-dist:=$(leaflet-images-src:node_modules/leaflet/%=%)
 
 VPATH = $(ROOT_DIR)
 
-# .PHONY: clean build
+.PHONY: clean build
 
 build: dist/js/bundle.js dist/css/spel.css $(other-dist) $(leaflet-images) $(leaflet-images-dist) | dist/
 
@@ -43,19 +43,17 @@ dist/js/bundle.js: $(js-source) dist/js
 dist/js: |  dist/
 	mkdir -p $(ROOT_DIR)dist/js
 
-
 dist/css: |  dist/
 	mkdir -p $(ROOT_DIR)dist/css
 
 dist/css/spel.css:  $(css-map-source) | dist/css
-	PATH=$(PATH) ;cleancss -o $(ROOT_DIR)/dist/css/spel.css $(css-map-source)
+	cleancss -o $(ROOT_DIR)/dist/css/spel.css $(css-map-source)
 
 dist/css/%.min.css:  src/css/%.min.css | dist/css
 	cp  $(ROOT_DIR)$< $(ROOT_DIR)$@
 
 dist/css/%.css:  src/css/%.css | dist/css
-	PATH=$(PATH);cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
-
+	cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
 
 dist/images: |  dist/
 	mkdir -p $(ROOT_DIR)dist/images
@@ -68,6 +66,3 @@ dist/%: src/%
 
 clean:
 	rm -rf $(ROOT_DIR)dist/!(.git|.|..)
-
-
-
