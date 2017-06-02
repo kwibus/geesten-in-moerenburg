@@ -4,7 +4,7 @@ var Store = require('./storeProgres.js');
 
 var currentquestion=0;
 
-function disableLinkGoal (){
+function tryDisableLinkGoal (){
 
   if (document.getElementById('next'+currentquestion)){
     var nextLink = document.getElementById('next'+currentquestion);
@@ -40,7 +40,13 @@ function correct(){
 }
 
 function anserCorrect(){
-  disableLinkGoal();
+  tryDisableLinkGoal();
+  tryAnserquestion();
+  tryAnserRebus();
+}
+
+function tryAnserquestion(){
+
   if (document.getElementById('questions' + currentquestion)){
     document.getElementById('mark' + currentquestion).classList.remove('hidden');
     var questions = document.getElementById('questions' + currentquestion)
@@ -79,12 +85,28 @@ function skipQuestion (){
 var rebuscorect = 0;
 var rebusAnser = 'hetslotvanhetspel';
 
+function tryAnserRebus (){
+  var rebus=document.getElementById('rebus' + currentquestion);
+  if (rebus != undefined){
+
+    var letterboxes= rebus.getElementsByClassName('letterbox');
+    for (var n = 0;  n < rebusAnser.length ; n++) {
+      letterboxes[n].value = rebusAnser.charAt(n);
+      correctLetter(letterboxes[n],n);
+    }
+  }
+}
+
+function correctLetter (id,n ){
+  id.disabled=true;
+  document.getElementById('markWrong' + n).classList.add('hidden');
+  document.getElementById('markCorrect' + n).classList.remove('hidden');
+}
+
 function checkKey (id,n){
   id.value=id.value.toLowerCase();
   if (id.value===rebusAnser.charAt(n)){
-    id.disabled=true;
-    document.getElementById('markWrong' + n).classList.add('hidden');
-    document.getElementById('markCorrect' + n).classList.remove('hidden');
+    correctLetter(id,n);
     rebuscorect++;
     if(rebuscorect>=rebusAnser.length){
 
@@ -101,7 +123,7 @@ function checkKey (id,n){
 }
 
 module.exports.skipQuestion = skipQuestion;
-module.exports.disableLinkGoal = disableLinkGoal;
+module.exports.tryDisableLinkGoal = tryDisableLinkGoal;
 module.exports.incorrect= incorrect;
 module.exports.correct= correct;
 module.exports.nextTab = nextTab;

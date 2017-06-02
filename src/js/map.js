@@ -355,7 +355,7 @@ function succes(e){
       var audio = new Audio('audio/success.mp3');
       audio.play();
 
-      Quize.disableLinkGoal();
+      Quize.tryDisableLinkGoal();
       Quize.nextTab();
       if (Quize.skipQuestion()){
         nextgoal();
