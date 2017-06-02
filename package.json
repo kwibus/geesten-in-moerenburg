@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "browserfy": "^1.0.0",
+    "bundlebars": "^1.2.0",
     "clean-css-cli": "^4.1.0",
-    "uglifyify": "^3.0.4",
-    "watchify": "^3.9.0"
+    "uglifyify": "^3.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

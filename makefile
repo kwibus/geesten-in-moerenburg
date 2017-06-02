@@ -8,6 +8,11 @@ ignore:=$(shell git ls-files --others -i --exclude-standard src)
 src:=$(filter-out $(ignore) , $(shell cd $(ROOT_DIR); find src -type f))
 
 js-source:=$(wildcard src/js/*)
+
+handlebars-source:=$(wildcard src/*.hbs)
+handlebars-igore:=$(shell cd $(ROOT_DIR); find src/partials -type f)
+handlebars-dist:=$(handlebars-source:src/%.hbs=dist/%.html)
+
 css-dir:=src/css
 css-map-source:=\
    node_modules/sweetalert2/dist/sweetalert2.min.css\
@@ -18,7 +23,7 @@ css-map-source:=\
    $(css-dir)/Leaflet.Photo.css\
 
 
-other-src:= $(filter-out  $(js-source) $(css-map-source), $(src))
+other-src:= $(filter-out  $(js-source) $(css-map-source) $(handlebars-source) $(handlebars-igore), $(src))
 other-dist:= $(other-src:src/%=dist/%)
 
 leaflet-images-src:=$(wildcard node_modules/leaflet/dist/images/*)
@@ -28,7 +33,7 @@ VPATH = $(ROOT_DIR)
 
 .PHONY: clean build
 
-build: dist/js/bundle.js dist/css/spel.css $(other-dist) $(leaflet-images) $(leaflet-images-dist) | dist/
+build: dist/js/bundle.js dist/css/spel.css $(other-dist) $(leaflet-images) $(leaflet-images-dist) $(handlebars-dist) | dist/
 
 dist/:
 	git clone -b gh-pages --single-branch $(ROOT_DIR) $(ROOT_DIR)/dist
@@ -43,6 +48,7 @@ dist/js/bundle.js: $(js-source) dist/js
 dist/js: |  dist/
 	mkdir -p $(ROOT_DIR)dist/js
 
+
 dist/css: |  dist/
 	mkdir -p $(ROOT_DIR)dist/css
 
@@ -54,6 +60,9 @@ dist/css/%.min.css:  src/css/%.min.css | dist/css
 
 dist/css/%.css:  src/css/%.css | dist/css
 	cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
+
+dist/%.html : src/%.hbs
+	bb $(ROOT_DIR)$^ -a $(ROOT_DIR)src/partials > $(ROOT_DIR)$@
 
 dist/images: |  dist/
 	mkdir -p $(ROOT_DIR)dist/images
