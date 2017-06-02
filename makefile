@@ -1,6 +1,6 @@
 
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-export PATH:="$(ROOT_DIR)node_modules/.bin/:$(PATH)"
+export PATH:=$(ROOT_DIR)node_modules/.bin/:$(PATH)
 
 SHELL :=/bin/bash -O extglob
 
@@ -68,6 +68,3 @@ dist/%: src/%
 
 clean:
 	rm -rf $(ROOT_DIR)dist/!(.git|.|..)
-
-
-

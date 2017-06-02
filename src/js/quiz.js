@@ -1,7 +1,8 @@
-var Map = require('./map.js');
 var Alert = require('./myAlert.js');
 var Store = require('./storeProgres.js');
 
+
+// TODO  make code less statefull (depencey on global variable currentquestion)
 var currentquestion=0;
 
 function tryDisableLinkGoal (){
@@ -10,7 +11,6 @@ function tryDisableLinkGoal (){
     var nextLink = document.getElementById('next'+currentquestion);
     nextLink.removeAttribute('href');
     nextLink.removeAttribute('onClick');
-
   }
 }
 
@@ -97,7 +97,7 @@ function tryAnserRebus (){
   }
 }
 
-function correctLetter (id,n ){
+function correctLetter (id,n){
   id.disabled=true;
   document.getElementById('markWrong' + n).classList.add('hidden');
   document.getElementById('markCorrect' + n).classList.remove('hidden');
