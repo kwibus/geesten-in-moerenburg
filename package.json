@@ -22,6 +22,7 @@
     "browserfy": "^1.0.0",
     "bundlebars": "^1.2.0",
     "clean-css-cli": "^4.1.0",
+    "hbs-cli": "^1.1.0",
     "uglifyify": "^3.0.4"
   },
   "scripts": {

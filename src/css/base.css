@@ -22,3 +22,6 @@
 .navigation > li a:hover {
     background-color: #111;
 }
+.navigation .disabled {
+    display:none
+}

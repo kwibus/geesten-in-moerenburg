@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html manifest="cache.appcache">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="shortcut icon" href="images/ivn.ico" type="image/vnd.microsoft.icon">
+    <title>{{title}}</title>
+  </head>
+  <body style="background-image:url(images/introductieFoto.jpg) ;background-size: cover; background-repeat:no-repeat">
+    <div style="margin:auto; margin-top:5%; max-width:100ex; background-color:#fff; text-align:center">
+      <h1 style="margin:0;padding:3%; background-color:#6DA927; color:#fff;">{{title}}</h1>
+      {{> nav}}
+      {{>content}}
+    </div>
+  </body>
+</html>

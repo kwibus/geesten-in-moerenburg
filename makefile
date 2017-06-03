@@ -10,7 +10,7 @@ src:=$(filter-out $(ignore) , $(shell cd $(ROOT_DIR); find src -type f))
 js-source:=$(wildcard src/js/*)
 
 handlebars-source:=$(wildcard src/*.hbs)
-handlebars-igore:=$(shell cd $(ROOT_DIR); find src/partials -type f)
+handlebars-igore:=$(wildcard src/partials/*.hbs) $(wildcard src/helpers/*.hbs)
 handlebars-dist:=$(handlebars-source:src/%.hbs=dist/%.html)
 
 css-dir:=src/css
@@ -61,8 +61,8 @@ dist/css/%.min.css:  src/css/%.min.css | dist/css
 dist/css/%.css:  src/css/%.css | dist/css
 	cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
 
-dist/%.html : src/%.hbs
-	bb $(ROOT_DIR)$^ -a $(ROOT_DIR)src/partials > $(ROOT_DIR)$@
+dist/%.html : src/%.hbs $(handlebars-igore)
+	cd $(ROOT_DIR); hbs --partial src/partials/'*' --helper ./src/helpers/test.js -o dist -- $<
 
 dist/images: |  dist/
 	mkdir -p $(ROOT_DIR)dist/images
