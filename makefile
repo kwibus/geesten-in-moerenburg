@@ -1,6 +1,6 @@
 
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-export PATH:="$(ROOT_DIR)node_modules/.bin/:$(PATH)"
+export PATH:=$(ROOT_DIR)node_modules/.bin/:$(PATH)
 
 SHELL :=/bin/bash -O extglob
 
@@ -8,6 +8,11 @@ ignore:=$(shell git ls-files --others -i --exclude-standard src)
 src:=$(filter-out $(ignore) , $(shell cd $(ROOT_DIR); find src -type f))
 
 js-source:=$(wildcard src/js/*)
+
+handlebars-source:=$(wildcard src/*.hbs)
+handlebars-igore:=$(wildcard src/partials/*.hbs) $(wildcard src/helpers/*.hbs)
+handlebars-dist:=$(handlebars-source:src/%.hbs=dist/%.html)
+
 css-dir:=src/css
 css-map-source:=\
    node_modules/sweetalert2/dist/sweetalert2.min.css\
@@ -18,7 +23,7 @@ css-map-source:=\
    $(css-dir)/Leaflet.Photo.css\
 
 
-other-src:= $(filter-out  $(js-source) $(css-map-source), $(src))
+other-src:= $(filter-out  $(js-source) $(css-map-source) $(handlebars-source) $(handlebars-igore), $(src))
 other-dist:= $(other-src:src/%=dist/%)
 
 leaflet-images-src:=$(wildcard node_modules/leaflet/dist/images/*)
@@ -26,9 +31,9 @@ leaflet-images-dist:=$(leaflet-images-src:node_modules/leaflet/%=%)
 
 VPATH = $(ROOT_DIR)
 
-# .PHONY: clean build
+.PHONY: clean build
 
-build: dist/js/bundle.js dist/css/spel.css $(other-dist) $(leaflet-images) $(leaflet-images-dist) | dist/
+build: dist/js/bundle.js dist/css/spel.css $(other-dist) $(leaflet-images) $(leaflet-images-dist) $(handlebars-dist) | dist/
 
 dist/:
 	git clone -b gh-pages --single-branch $(ROOT_DIR) $(ROOT_DIR)/dist
@@ -48,14 +53,16 @@ dist/css: |  dist/
 	mkdir -p $(ROOT_DIR)dist/css
 
 dist/css/spel.css:  $(css-map-source) | dist/css
-	PATH=$(PATH) ;cleancss -o $(ROOT_DIR)/dist/css/spel.css $(css-map-source)
+	cleancss -o $(ROOT_DIR)/dist/css/spel.css $(css-map-source)
 
 dist/css/%.min.css:  src/css/%.min.css | dist/css
 	cp  $(ROOT_DIR)$< $(ROOT_DIR)$@
 
 dist/css/%.css:  src/css/%.css | dist/css
-	PATH=$(PATH);cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
+	cleancss -o  $(ROOT_DIR)$@ $(ROOT_DIR)$<
 
+dist/%.html : src/%.hbs $(handlebars-igore)
+	cd $(ROOT_DIR); hbs --partial src/partials/'*' --helper ./src/helpers/test.js -o dist -- $<
 
 dist/images: |  dist/
 	mkdir -p $(ROOT_DIR)dist/images
@@ -68,6 +75,3 @@ dist/%: src/%
 
 clean:
 	rm -rf $(ROOT_DIR)dist/!(.git|.|..)
-
-
-
