@@ -4,6 +4,9 @@
   L.EdgeMarker = L.Layer.extend({
 
     options: {
+      findEdge : function (map){
+        return L.bounds([0,0], map.getSize());
+      },
       icon: L.icon({
         iconUrl:  'images/edge-arrow-marker.png',
         clickable: true,
@@ -20,25 +23,31 @@
     addTo: function (map) {
       this._map = map;
 
-      map.on('move', this._addEdgeMarkers, this);
-      map.on('viewreset', this._addEdgeMarkers, this);
+      map.on('move', this.update, this);
+      map.on('viewreset', this.update, this);
 
-      this._addEdgeMarkers();
+      this.update();
       return this;
+    },
+
+    remove: function(){
+      this._map.off('move', this.update, this);
+      this._map.off('viewreset', this.update, this);
+      this._removeMarker();
+      L.Layer.prototype.remove.call(this);
+
     },
 
     onClick: function (e) {
       this._map.setView(e.latlng, this._map.getZoom());
     },
 
-    onAdd: function () {},
-
     _marker: undefined,
 
-    _addEdgeMarkers: function () {
+    update: function () {
 
-      var mapPixelBounds = L.bounds([40,0],this._map.getSize());
-      if ( this._target  != undefined){
+      if ( this._target  != undefined && this._map!=undefined){
+        var mapPixelBounds = this.options.findEdge(this._map);
         var currentMarkerPosition = this._map.latLngToContainerPoint( this._target);
 
         if (currentMarkerPosition.y < mapPixelBounds.min.y ||
@@ -124,8 +133,9 @@
 
     setTarget: function (latlng){
       this._target=latlng;
-      this._addEdgeMarkers();
+      this.update();
     },
+    _makeThisTarget: function (object){this.setTarget(object.latlng);},
   });
 
   L.edgeMarker = function (latlng, options) {
@@ -137,18 +147,23 @@
     bindEdgeMarker: function (options){
       if (!this._edgeMarkerHandlersAdded) {
 
-        this._edgeMarker=L.edgeMarker(options);
-        this._edgeMarker._target=(this.getLatLng());
+        this._edgeMarker = L.edgeMarker(this.getLatLng(),options);
         this._edgeMarker.addTo(this._map);
-        this.on({
-          remove: this._edgeMarker.remove(),
-          move: function (e){
-            this._edgeMarker.setTarget(e.latlng);
-          },
-        });
+        this.on('remove', this._edgeMarker.remove, this._edgeMarker);
+        this.on('move', this._edgeMarker._makeThisTarget, this._edgeMarker);
         this._edgeMarkerHandlersAdded = true;
       }
       return this;
+    },
+
+    unbindEdgeMarker: function (){
+      if (this._edgeMarker){
+        this.off('remove', this._edgeMarker.remove, this._edgeMarker);
+        this.off('move', this._edgeMarker._makeThisTarget, this._edgeMarker);
+        this._edgeMarker.remove();
+        this._edgeMarker=undefined;
+        this._edgeMarkerHandlersAdded=false;
+      }
     },
   });
 

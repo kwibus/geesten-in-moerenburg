@@ -219,7 +219,12 @@ function initGoal(map,goal){
     goalMarkerPhoto = L.marker(goal.latLng);
     goalMarkerCircle.addTo(map);
     goalMarkerPhoto.addTo(map);
-    goalMarkerPhoto.bindEdgeMarker();
+    goalMarkerPhoto.bindEdgeMarker({
+      findEdge : function (map){
+        return L.bounds([45,0], map.getSize());
+      }
+    }
+);
     setgoal(goal);
   }
 
