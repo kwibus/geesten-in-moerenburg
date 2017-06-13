@@ -42,8 +42,6 @@
           <li id="tab10" class="disabled"><a href="#stop10"  role="tab"><i class="fa fa-trophy"></i></a></li>
         </ul>
         <ul role="tablist">
-          <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-
           <li><a href="#faq" role="tab"><i class="fa fa-question fa-lg"></i></a></li>
           <li><a onclick="sidebar.close();" role="tab"><i class="fa fa-map"></i></a></li>
         </ul>
@@ -564,6 +562,7 @@
           En nimmer en nooit hun opdracht zullen vergeten
           </p>
 
+         <div id="rebus9">
           <input type="text" autocapitalize="off" class="letterbox" name="textboxname" autocomplete="off" onfocus="this.value='';" oninput="checkKey(this,0);"  maxlength="1"/> Tegel 112 letter 3
             <img src="images/transparent-green-checkmark-hi.png" class="hidden questionmark" id="markCorrect0"/>
             <img src="images/Red-Cross-Mark-PNG.png" class="hidden questionmark" id="markWrong0"/><br>
@@ -642,38 +641,25 @@
           <img src="images/Red-Cross-Mark-PNG.png" class="hidden questionmark" id="markWrong16"/><br>
         </div>
 
+        </div>
         <div class="sidebar-pane" id="stop10">
           <h1 class="sidebar-header">Je hebt gewonnen:<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
           <img src="images/tropy.jpg" style="margin:auto; display: block; width:70%"/><br>
           <h1 style="text-align: center;">Je bent opgenomen in de rij “Hoeder van Moerenburgs wateren”.</h1>
         </div>
 
-        <div class="sidebar-pane" id="settings">
-          <h1 class="sidebar-header">Settings:<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-         .
-              <button class="button" onclick="nextTab();nextgoal();">
-                 volgende  opdracht:
-              </button>
-
-              <button class="button" onclick="deleteSaves();location.reload(true);">
-                  verwijder opgeslagen voortgang
-              </button>
-              version 0.9
-        </div>
-
         <div class="sidebar-pane" id="faq">
           <h1 class="sidebar-header">FAQ:<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-
+          
           <link rel="stylesheet" href="css/faq.css" />
-
           <section class="faq-section">
             <input type="checkbox" id="q2">
             <label for="q2">Hoe weet ik of ik de goede richting heb gekozen?</label>
             <div class=faq-answer>
-                 <p>Aan de rechte lijn op de kaart kun je zien of jij het doel nadert.</p>
+              <p>Aan de rechte lijn op de kaart kun je zien of jij het doel nadert.</p>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q3">
             <label for="q3">Waar is het noorden?</label>
@@ -683,7 +669,7 @@
               </p>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q4">
             <label for="q4">Hoe vind ik de opdrachten?</label>
@@ -693,7 +679,7 @@
               </p>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q5">
             <label for="q5">Ik kan niet vinden waar ik ben?</label>
@@ -701,7 +687,7 @@
               <p> Je kan je zelf gemakkelijk vinden door op icon <i class="fa fa-map-marker" aria-hidden="true"></i> rechts boven op je scherm te klikken.  </p>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q6">
             <label for="q6">Mijn locatie word onnauwkeurig weergegeven</label>
@@ -712,7 +698,7 @@
               </ul>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q7">
             <label for="q7">Mijn GPS werkt niet? </label>
@@ -724,7 +710,7 @@
               </ul>
             </div>
           </section>
-
+          
           <section class="faq-section">
             <input type="checkbox" id="q8">
             <label for="q8">Waarom vraagt het spel om opslag?</label>

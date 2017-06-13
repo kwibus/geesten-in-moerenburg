@@ -1,21 +1,25 @@
+
 <!DOCTYPE html>
-<html>
+<html manifest="cache.appcache">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/faq.css" />
-    <title>Geesten in Moerenburg</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="shortcut icon" href="images/ivn.ico" type="image/vnd.microsoft.icon">
+    <title>Help</title>
   </head>
-
   <body style="background-image:url(images/introductieFoto.jpg) ;background-size: cover; background-repeat:no-repeat">
-
     <div style="margin:auto; margin-top:5%; max-width:100ex; background-color:#fff; text-align:center">
-
-      <h1 style="margin:0;padding:3%; background-color:#6DA927; color:#fff; ">Help</h1>
-
-      <div style="padding:10px">
+      <h1 style="margin:0;padding:3%; background-color:#6DA927; color:#fff;">Help</h1>
+      <ul class=navigation>
+        <li><a href="index.html">Speurtocht</a></li>
+        <li class="disabled"><a href="help.html">Help</a></li>
+        <li><a href="colofon.html">Colofon</a></li>
+      </ul>
+        <div style="padding:10px">
+        
+        <link rel="stylesheet" href="css/faq.css" />
         <section class="faq-section">
           <input type="checkbox" id="q2">
           <label for="q2">Hoe weet ik of ik de goede richting heb gekozen?</label>
@@ -23,7 +27,7 @@
             <p>Aan de rechte lijn op de kaart kun je zien of jij het doel nadert.</p>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q3">
           <label for="q3">Waar is het noorden?</label>
@@ -33,7 +37,7 @@
             </p>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q4">
           <label for="q4">Hoe vind ik de opdrachten?</label>
@@ -43,7 +47,7 @@
             </p>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q5">
           <label for="q5">Ik kan niet vinden waar ik ben?</label>
@@ -51,7 +55,7 @@
             <p> Je kan je zelf gemakkelijk vinden door op icon <i class="fa fa-map-marker" aria-hidden="true"></i> rechts boven op je scherm te klikken.  </p>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q6">
           <label for="q6">Mijn locatie word onnauwkeurig weergegeven</label>
@@ -62,7 +66,7 @@
             </ul>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q7">
           <label for="q7">Mijn GPS werkt niet? </label>
@@ -74,7 +78,7 @@
             </ul>
           </div>
         </section>
-
+        
         <section class="faq-section">
           <input type="checkbox" id="q8">
           <label for="q8">Waarom vraagt het spel om opslag?</label>
@@ -82,10 +86,7 @@
             <p> Om te kaart te kunnen gebruiken in het spel.  </p>
           </div>
         </section>
-
-      </div>
+        </div>
     </div>
-
   </body>
 </html>
-

@@ -9,7 +9,6 @@ CACHE:
 ./images/marker-icon.png
 ./images/marker-icon-2x.png
 ./images/marker-shadow.png
-
 ./images/halte7.gif
 ./images/vleermuisKastje.jpg
 ./images/monnik.gif
@@ -43,7 +42,7 @@ CACHE:
 ./js/bundle.js
 ./css/global.css
 ./css/spel.css
-./css/index.css
+./css/base.css
 ./css/font-awesome.min.css
 ./css/faq.css
 ./spel.html
